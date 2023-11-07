@@ -108,7 +108,7 @@ body {
 }
 
 footer{
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     right: 0;
@@ -116,6 +116,7 @@ footer{
     height: auto;
     width: 100vw;
     color: #fff;
+    margin-top:20px;
 }
 
 .footer-content{
@@ -173,6 +174,34 @@ footer{
 
 .socials a:hover i{
     color: aqua;
+}
+
+@media (min-width: 360px) {
+    .footer-content h3{
+        font-size: 1.1rem;
+        line-height: 1rem;
+    }
+    .footer-content p{
+        margin: 5px auto;
+        line-height: 20px;
+    }
+    .socials{
+        margin: 1rem 0;
+    }
+}
+
+@media (min-width: 720px) {
+    .footer-content h3{
+        font-size: 1.8rem;
+        line-height: 1.5rem;
+    }
+    .footer-content p{
+        margin: 8px auto;
+        line-height: 24px;
+    }
+    .socials{
+        margin: 1rem 0;
+    }
 }
 
 hr {
