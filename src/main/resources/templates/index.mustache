@@ -1,0 +1,43 @@
+{{>layout/header}}
+{{>layout/menu}}
+
+<body>
+    <div class="container" style="flex:1;">
+        <h2 class="main-title">게시글 리스트</h2>
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th style="text-align:center;">게시글번호</th>
+                <th style="text-align:center;">제목</th>
+                <th style="text-align:center;">작성자</th>
+                <th style="text-align:center;">최종수정일</th>
+            </tr>
+            </thead>
+            <tbody id="body">
+            {{#posts}}
+                <tr>
+                    <td style="text-align:center;">{{id}}</td>
+                    <td style="text-align:center;"><a href="/posts/update/{{id}}">{{title}}</a></td>
+                    <td style="text-align:center;">{{author}}</td>
+                    <td style="text-align:center;">{{modifiedDate}}</td>
+                </tr>
+            {{/posts}}
+            {{^posts}}
+                <tr>
+                    <td colspan="4" style="text-align:center;">등록된 게시물이 없습니다.</td>
+                </tr>
+            {{/posts}}
+            </tbody>
+        </table>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12" style="text-align:right;">
+                    <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{{>layout/footer}}
