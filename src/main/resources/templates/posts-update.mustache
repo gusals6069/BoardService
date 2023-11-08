@@ -7,9 +7,15 @@
         <div class="col-md-12" style="margin-top:20px;">
             <div class="col-md-12">
                 <form>
+                    <input type="hidden" id="id" value="{{post.id}}" />
                     <div class="form-group">
-                        <label for="title">글 번호</label>
-                        <input type="text" class="form-control" id="id" value="{{post.id}}" readonly>
+                        <label for="category" class="form-label">분류</label>
+                        <select class="form-control" id="category">
+                            <option value="">-선택-</option>
+                            <option value="유머" {{#category1}}selected{{/category1}}>유머</option>
+                            <option value="잡담" {{#category2}}selected{{/category2}}>잡담</option>
+                            <option value="소식" {{#category3}}selected{{/category3}}>소식</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="title">제목</label>

@@ -35,7 +35,13 @@ public class IndexController {
     @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) throws Exception {
         PostsResponseDto dto = postsService.findById(id);
+
         model.addAttribute("post", dto);
+
+        // 머스타치에서는 JSTL과 같은 문법을 쓸 수 없기 때문에 이렇게 구현
+        model.addAttribute("category1", dto.getCategory().equals("유머") ? true : false);
+        model.addAttribute("category2", dto.getCategory().equals("잡담") ? true : false);
+        model.addAttribute("category3", dto.getCategory().equals("소식") ? true : false);
 
         return "posts-update";
     }

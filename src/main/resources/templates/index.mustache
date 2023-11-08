@@ -4,27 +4,62 @@
 <body>
     <div class="container" style="flex:1;">
         <h2 class="main-title">게시글 리스트</h2>
-        <table class="table table-horizontal table-bordered">
-            <thead class="thead-strong">
-            <tr>
-                <th style="text-align:center;">게시글번호</th>
-                <th style="text-align:center;">제목</th>
-                <th style="text-align:center;">작성자</th>
-                <th style="text-align:center;">최종수정일</th>
-            </tr>
+        <table class="table table-horizontal table-bordered table-lg">
+            <colgroup>
+                <col witdh="5%"/>
+                <col witdh="70%"/>
+                <col witdh="10%"/>
+                <col witdh="15%"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th style="text-align:center;">분류</th>
+                    <th style="text-align:center;">제목</th>
+                    <th style="text-align:center;">작성자명</th>
+                    <th style="text-align:center;">수정일자</th>
+                </tr>
             </thead>
             <tbody id="body">
+                {{#posts}}
+                    <tr class="data" onclick="javascript:location.href='/posts/update/'+'{{id}}'">
+                        <td style="text-align:center;"><b style="color:blue;">[{{category}}]</b></td>
+                        <td style="text-align:center;">{{title}}</td>
+                        <td style="text-align:center;">{{author}}</td>
+                        <td style="text-align:center;">{{modifiedDate}}</td>
+                    </tr>
+                {{/posts}}
+                {{^posts}}
+                    <tr>
+                        <td colspan="4" style="text-align:center;">등록된 게시물이 없습니다.</td>
+                    </tr>
+                {{/posts}}
+            </tbody>
+        </table>
+
+        <table class="table table-horizontal table-bordered table-sm" style="display:none;">
+            <colgroup>
+                <col witdh="5%"/>
+                <col witdh="95%"/>
+            </colgroup>
+            <tbody id="body">
             {{#posts}}
-                <tr>
-                    <td style="text-align:center;">{{id}}</td>
-                    <td style="text-align:center;"><a href="/posts/update/{{id}}">{{title}}</a></td>
-                    <td style="text-align:center;">{{author}}</td>
-                    <td style="text-align:center;">{{modifiedDate}}</td>
+                <tr class="data" onclick="main.view('{{id}}')">
+                    <td style="text-align:center; vertical-align:middle;">{{id}}</td>
+                    <td style="text-align:center; vertical-align:middle;">
+                        <div class="title" style="font-size:15px; padding-left:10px; text-align:left; margin-bottom:5px; "><b style="color:blue;">[{{category}}]</b> {{title}}</div> <!-- 댓글 수도 표시해야함 -->
+                        <div class="info"  style="font-size:12px; padding-left:10px; text-align:left;">
+                            <span class="writer">작성자 : {{author}}</span>
+                            <span class="text_bar"> | </span>
+                            <span class="hit">조회수 : <strong>0</strong></span> <!-- 조회수 카운터도 추가해야함 -->
+                            <span class="text_bar"> | </span>
+                            <span class="modifyTime">{{modifiedDate}}</span>
+                        </div>
+                    </td>
                 </tr>
             {{/posts}}
             {{^posts}}
-                <tr>
-                    <td colspan="4" style="text-align:center;">등록된 게시물이 없습니다.</td>
+                <tr class="noData">
+                    <td colspan="2" style="text-align:center; vertical-align:middle;">등록된 게시물이 없습니다.</td>
                 </tr>
             {{/posts}}
             </tbody>

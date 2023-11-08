@@ -33,19 +33,23 @@ public class Posts extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+    private String category;
+
     private String author;
 
     //Builder 어노테이션이 선언될 경우, 해당 클래스의 빌더패턴 클래스를 생성
     //Builder 어노테이션이 생성자에 선언될 경우, 생성자에 포함된 필드만 빌더에 포함 (ex: Posts.builder().title(title).build())
     @Builder
-    public Posts(String title, String content, String author){
+    public Posts(String title, String content, String category, String author){
         this.title = title;
         this.content = content;
+        this.category = category;
         this.author = author;
     }
 
-    public void update(String title, String content){
+    public void update(String title, String content, String category){
         this.title = title;
         this.content = content;
+        this.category = category;
     }
 }

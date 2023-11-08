@@ -176,21 +176,35 @@ footer{
     color: aqua;
 }
 
-@media (min-width: 360px) {
+@media (max-width: 720px) {
     .footer-content h3{
-        font-size: 1.1rem;
-        line-height: 1rem;
+        font-size: 2.1rem;
+        line-height: 2.5rem;
     }
     .footer-content p{
-        margin: 5px auto;
-        line-height: 20px;
+        margin: 8px auto;
+        line-height: 28px;
+    }
+    .socials{
+        margin: 1rem 0 3rm 0;
+    }
+}
+
+@media (max-width: 540px) {
+    .footer-content h3{
+        font-size: 1.8rem;
+        line-height: 2rem;
+    }
+    .footer-content p{
+        margin: 8px auto;
+        line-height: 24px;
     }
     .socials{
         margin: 1rem 0;
     }
 }
 
-@media (min-width: 720px) {
+@media (max-width: 480px) {
     .footer-content h3{
         font-size: 1.8rem;
         line-height: 1.5rem;
@@ -198,6 +212,34 @@ footer{
     .footer-content p{
         margin: 8px auto;
         line-height: 24px;
+    }
+    .socials{
+        margin: 1rem 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .footer-content h3{
+        font-size: 1.4rem;
+        line-height: 1.1rem;
+    }
+    .footer-content p{
+        margin: 5px auto;
+        line-height: 21px;
+    }
+    .socials{
+        margin: 1rem 0;
+    }
+}
+
+@media (max-width: 240px) {
+    .footer-content h3{
+        font-size: 1.1rem;
+        line-height: 1rem;
+    }
+    .footer-content p{
+        margin: 5px auto;
+        line-height: 20px;
     }
     .socials{
         margin: 1rem 0;
@@ -231,11 +273,6 @@ h1, .h1 {
 h2, .h2 {
   font-size: calc(1.325rem + 0.9vw);
 }
-@media (min-width: 1200px) {
-  h2, .h2 {
-    font-size: 2rem;
-  }
-}
 
 h2.main-title {
    margin:10px 0;
@@ -245,6 +282,60 @@ h2.main-title {
 h2.sub-title {
     margin:10px 0;
     font-size: 28px;
+}
+
+@media (max-width: 960px) {
+  h2, .h2 {
+    font-size: 2rem;
+  }
+
+  h2.main-title {
+     margin:10px 0;
+     font-size: 28px;
+     font-weight:bold;
+  }
+
+  h2.sub-title {
+      margin:10px 0;
+      font-size: 28px;
+      font-weight:bold;
+  }
+}
+
+@media (max-width: 480px) {
+  h2, .h2 {
+    font-size: 1rem;
+  }
+
+  h2.main-title {
+     margin:10px 0;
+     font-size: 26px;
+     font-weight:bold;
+  }
+
+  h2.sub-title {
+      margin:10px 0;
+      font-size: 26px;
+      font-weight:bold;
+  }
+}
+
+@media (max-width: 240px) {
+  h2, .h2 {
+    font-size: 0.5rem;
+  }
+
+  h2.main-title {
+     margin:10px 0;
+     font-size: 24px;
+     font-weight:bold;
+  }
+
+  h2.sub-title {
+      margin:10px 0;
+      font-size: 24px;
+      font-weight:bold;
+  }
 }
 
 h3, .h3 {
