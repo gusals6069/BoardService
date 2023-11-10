@@ -99,7 +99,7 @@ public class PostsApiController {
     }
 
     @DeleteMapping("/api/posts/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id, BindingResult bindingResult) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         JSONObject result = new JSONObject();
 
         try{

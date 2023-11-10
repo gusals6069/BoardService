@@ -45,7 +45,11 @@ var main = {
                  window.location.href = '/';
             });
         }).fail(function (error) {
-            main.valid(error);
+            if(error.responseJSON.type == 'valid'){
+                main.valid(error);
+            }else{
+                modal.show('오류가 발생했습니다.', null);
+            }
         });
     },
     update : function () {
@@ -66,7 +70,11 @@ var main = {
                 window.location.href = '/';
             });
         }).fail(function (error) {
-            main.valid(error);
+            if(error.responseJSON.type == 'valid'){
+                main.valid(error);
+            }else{
+                modal.show('오류가 발생했습니다.', null);
+            }
         });
     },
     delete : function () {
@@ -80,7 +88,12 @@ var main = {
                 window.location.href = '/';
             });
         }).fail(function (error) {
-            main.valid(error);
+            console.log(error);
+            if(error.responseJSON.type == 'valid'){
+                main.valid(error);
+            }else{
+                modal.show('오류가 발생했습니다.', null);
+            }
         });
     },
     valid : function(res) {
@@ -92,7 +105,7 @@ var main = {
             item.style.border = '1px solid #ced4da';
         });
 
-        if(res.responseJSON.type = 'valid' && res.responseJSON.data.length > 0){
+        if(res.responseJSON.data.length > 0){
             res.responseJSON.data.forEach(function(item, index){
                 var validObj = document.querySelector('#'+item.fieldId);
                 var validMsg = validObj.nextElementSibling;
@@ -132,15 +145,14 @@ var modal = {
         document.querySelector('.modal-body').textContent = msg; // 로드마다 치환
         modalObject.show();
 
-        if(callback != null){
-            modalCloseBtn.forEach(function(item, idx){
-                item.addEventListener('click', function(evt){
-                    evt.preventDefault();
-                    callback();
-                });
+        modalCloseBtn.forEach(function(item, idx){
+            item.addEventListener('click', function(evt){
+                evt.preventDefault();
+
+                if(callback != null){ callback(); }
+                modal.hide();
             });
-            modalObject.hide();
-        }
+        });
     },
     hide : function () {
         if(modalObject == null) return;
