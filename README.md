@@ -5,3 +5,9 @@
 - Gradle Version : 7.5
 - Spring Boot Versoin : 2.1.7 RELEASE
 - Use : Security, DevTools, Lombok, JPA(hibernate), H2, Mustache, Bootstrap, fontawesome (icon)
+
+
+### 2023/11/10 변경사항
+
+- add message properties
+- add form validation
