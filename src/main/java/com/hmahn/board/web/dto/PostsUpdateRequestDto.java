@@ -9,11 +9,11 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @NoArgsConstructor
 public class PostsUpdateRequestDto {
-    @NotBlank(message = "분류값을 선택해주시기 바랍니다.")
+    @NotBlank(message = "{valid.blank.category}")
     private String category;
-    @NotBlank(message = "제목을 입력해주시기 바랍니다.")
+    @NotBlank(message = "{valid.blank.title}")
     private String title;
-    @NotBlank(message = "내용을 입력해주시기 바랍니다.")
+    @NotBlank(message = "{valid.blank.content}")
     private String content;
 
     @Builder

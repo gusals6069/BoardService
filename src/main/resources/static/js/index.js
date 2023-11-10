@@ -45,15 +45,7 @@ var main = {
                  window.location.href = '/';
             });
         }).fail(function (error) {
-            //console.log(JSON.stringify(error));
-            //console.log(JSON.parse(JSON.stringify(error)));
-            var res = JSON.parse(JSON.stringify(error));
-            var err = res.responseText;
-            var errParse = JSON.parse(err);
-
-            //console.log(res);
-            //console.log(err);
-            //console.log(errParse);
+            main.valid(error);
         });
     },
     update : function () {
@@ -74,7 +66,7 @@ var main = {
                 window.location.href = '/';
             });
         }).fail(function (error) {
-            console.log(JSON.stringify(error));
+            main.valid(error);
         });
     },
     delete : function () {
@@ -88,8 +80,30 @@ var main = {
                 window.location.href = '/';
             });
         }).fail(function (error) {
-            console.log(JSON.stringify(error));
+            main.valid(error);
         });
+    },
+    valid : function(res) {
+        document.querySelectorAll('.form-error').forEach(function(item, index){
+            item.style.display = 'none';
+        });
+
+        document.querySelectorAll('.form-control').forEach(function(item, index){
+            item.style.border = '1px solid #ced4da';
+        });
+
+        if(res.responseJSON.type = 'valid' && res.responseJSON.data.length > 0){
+            res.responseJSON.data.forEach(function(item, index){
+                var validObj = document.querySelector('#'+item.fieldId);
+                var validMsg = validObj.nextElementSibling;
+
+                if( validMsg != undefined ){
+                    validObj.style.border  = '1px solid #ff0000';
+                    validMsg.style.display = 'block';
+                    validMsg.textContent = item.message;
+                }
+            });
+        }
     },
     resize : function () {
         if(document.querySelector('.table-lg') != null && document.querySelector('.table-sm') != null) {

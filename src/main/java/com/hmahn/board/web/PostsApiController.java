@@ -8,6 +8,7 @@ import com.hmahn.board.web.dto.PostsUpdateRequestDto;
 
 import lombok.RequiredArgsConstructor;
 
+import org.json.simple.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -27,20 +28,20 @@ public class PostsApiController {
 
     @PostMapping("/api/posts")
     public ResponseEntity<?> save(@RequestBody @Valid PostsSaveRequestDto requestDto, BindingResult bindingResult) {
-        HashMap<String, Object> result = new HashMap<>();
+        JSONObject result = new JSONObject();
 
         // BindingResult 클래스는 @Valid에 대한 결과값을 가지고 있다.
         if(bindingResult.hasErrors()) {
-            List<HashMap<String, Object>> errors = new ArrayList<HashMap<String, Object>>();
+            List<JSONObject> errors = new ArrayList<JSONObject>();
 
             bindingResult.getAllErrors().forEach(error -> {
                 FieldError fieldError = (FieldError) error;
 
-                HashMap<String, Object> map = new HashMap<String, Object>();
-                map.put("field", fieldError.getField());
-                map.put("message", error.getDefaultMessage());
+                JSONObject jsonData = new JSONObject();
+                jsonData.put("fieldId", fieldError.getField());
+                jsonData.put("message", error.getDefaultMessage());
 
-                errors.add(map);
+                errors.add(jsonData);
             });
 
             result.put("type", "valid");
@@ -63,7 +64,7 @@ public class PostsApiController {
 
     @PutMapping("/api/posts/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid PostsUpdateRequestDto requestDto, BindingResult bindingResult) {
-        HashMap<String, Object> result = new HashMap<>();
+        JSONObject result = new JSONObject();
 
         // BindingResult 클래스는 @Valid에 대한 결과값을 가지고 있다.
         if(bindingResult.hasErrors()) {
@@ -72,11 +73,11 @@ public class PostsApiController {
             bindingResult.getAllErrors().forEach(error -> {
                 FieldError fieldError = (FieldError) error;
 
-                HashMap<String, Object> map = new HashMap<String, Object>();
-                map.put("field", fieldError.getField());
-                map.put("message", error.getDefaultMessage());
+                JSONObject jsonData = new JSONObject();
+                jsonData.put("fieldId", fieldError.getField());
+                jsonData.put("message", error.getDefaultMessage());
 
-                errors.add(map);
+                errors.add(jsonData);
             });
 
             result.put("type", "valid");
@@ -99,7 +100,7 @@ public class PostsApiController {
 
     @DeleteMapping("/api/posts/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id, BindingResult bindingResult) {
-        HashMap<String, Object> result = new HashMap<>();
+        JSONObject result = new JSONObject();
 
         try{
             postsService.delete(id);

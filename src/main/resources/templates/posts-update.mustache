@@ -16,18 +16,22 @@
                             <option value="잡담" {{#category2}}selected{{/category2}}>잡담</option>
                             <option value="소식" {{#category3}}selected{{/category3}}>소식</option>
                         </select>
+                        <div class="form-error"></div>
                     </div>
                     <div class="form-group">
                         <label for="title">제목</label>
                         <input type="text" class="form-control" id="title" value="{{post.title}}">
+                        <div class="form-error"></div>
                     </div>
                     <div class="form-group">
                         <label for="author"> 작성자 </label>
                         <input type="text" class="form-control" id="author" value="{{post.author}}" readonly>
+                        <div class="form-error"></div>
                     </div>
                     <div class="form-group">
                         <label for="content"> 내용 </label>
                         <textarea class="form-control" id="content">{{post.content}}</textarea>
+                        <div class="form-error"></div>
                     </div>
                 </form>
             </div>
