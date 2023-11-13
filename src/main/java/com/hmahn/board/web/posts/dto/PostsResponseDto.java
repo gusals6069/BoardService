@@ -1,4 +1,4 @@
-package com.hmahn.board.web.dto;
+package com.hmahn.board.web.posts.dto;
 
 import com.hmahn.board.domain.posts.Posts;
 import lombok.Getter;

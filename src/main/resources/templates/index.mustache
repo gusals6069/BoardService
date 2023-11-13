@@ -21,7 +21,7 @@
             </thead>
             <tbody id="body">
                 {{#posts}}
-                    <tr class="data" onclick="javascript:location.href='/posts/update/'+'{{id}}'">
+                    <tr class="data" onclick="main.view('{{id}}')">
                         <td style="text-align:center;"><b style="color:blue;">[{{category}}]</b></td>
                         <td style="text-align:center;">{{title}}</td>
                         <td style="text-align:center;">{{author}}</td>

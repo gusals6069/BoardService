@@ -1,10 +1,10 @@
-package com.hmahn.board.web;
+package com.hmahn.board.web.posts;
 
 import com.hmahn.board.service.posts.PostsService;
-import com.hmahn.board.web.dto.PostsListResponseDto;
-import com.hmahn.board.web.dto.PostsResponseDto;
-import com.hmahn.board.web.dto.PostsSaveRequestDto;
-import com.hmahn.board.web.dto.PostsUpdateRequestDto;
+import com.hmahn.board.web.posts.dto.PostsListResponseDto;
+import com.hmahn.board.web.posts.dto.PostsResponseDto;
+import com.hmahn.board.web.posts.dto.PostsSaveRequestDto;
+import com.hmahn.board.web.posts.dto.PostsUpdateRequestDto;
 
 import lombok.RequiredArgsConstructor;
 

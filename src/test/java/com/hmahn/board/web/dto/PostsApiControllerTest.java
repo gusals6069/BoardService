@@ -2,6 +2,8 @@ package com.hmahn.board.web.dto;
 
 import com.hmahn.board.domain.posts.Posts;
 import com.hmahn.board.domain.posts.PostsRepository;
+import com.hmahn.board.web.posts.dto.PostsSaveRequestDto;
+import com.hmahn.board.web.posts.dto.PostsUpdateRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;

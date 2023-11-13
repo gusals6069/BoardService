@@ -22,9 +22,23 @@ var main = {
                 _this.delete();
             });
         }
+
+        if(document.querySelector('#btn-list-page') != null) {
+            document.querySelector('#btn-list-page').addEventListener('click', function(evt){
+                location.href = '/'; // 미구현
+            });
+        }
+
+        if(document.querySelector('#btn-update-page') != null) {
+            document.querySelector('#btn-update-page').addEventListener('click', function(evt){
+                if(this.dataset.target != null){
+                    location.href = '/posts/update/' + this.dataset.target;
+                }
+            });
+        }
     },
     view : function (id) {
-        window.location.href = '/posts/update/' + id;
+        location.href = '/posts/view/' + id;
     },
     save : function () {
         var data = {
@@ -48,6 +62,7 @@ var main = {
             if(error.responseJSON.type == 'valid'){
                 main.valid(error);
             }else{
+                console.log(error);
                 modal.show('오류가 발생했습니다.', null);
             }
         });

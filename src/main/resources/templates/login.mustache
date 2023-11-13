@@ -1,0 +1,49 @@
+{{>layout/header}}
+{{>layout/menu}}
+
+<style>
+    body{
+        background-color : #212529!important;
+    }
+    .container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-signin {
+        max-width: 80%;
+        padding: 30px 50px;
+        margin: auto;
+        background-color:#ffffff;
+        border-radius: 10px;
+    }
+    .form-guide {
+        font-size: 18px;
+        font-weight: bold !important;
+    }
+    .btn_login img{
+        width: 300px;
+        height: auto;
+        margin: 10px auto;
+        display: block;
+    }
+</style>
+
+<body class="text-center">
+    <div class="container">
+        <main class="form-signin">
+            <img class="mb-4" src="/images/logo/lg_login.svg" alt="로그인" width="72" height="57">
+            <h3 class="form-guide">소셜계정으로 로그인하여 이용하실 수 있습니다.</h3>
+            <div class="row" style="margin-top:20px;">
+                <div class="col-md-12" style="text-align:center;">
+                    <a href="/oauth2/authorization/naver"  class="btn_login"><img src="/images/button/btn_login_n.png"/></a>
+                    <a href="/oauth2/authorization/kakao"  class="btn_login"><img src="/images/button/btn_login_k.png"/></a>
+                    <a href="/oauth2/authorization/google" class="btn_login"><img src="/images/button/btn_login_g.png"/></a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+{{>layout/footer}}

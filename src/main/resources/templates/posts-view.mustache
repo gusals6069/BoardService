@@ -3,7 +3,7 @@
 
 <body>
     <div class="container" style="flex:1;">
-        <h2 class="sub-title">게시글 수정</h2>
+        <h2 class="sub-title">게시글 조회 (input 제거)</h2>
         <div class="col-md-12" style="margin-top:20px;">
             <div class="col-md-12">
                 <form>
@@ -16,22 +16,18 @@
                             <option value="잡담" {{#category2}}selected{{/category2}}>잡담</option>
                             <option value="소식" {{#category3}}selected{{/category3}}>소식</option>
                         </select>
-                        <div class="form-error"></div>
                     </div>
                     <div class="form-group">
                         <label for="title">제목</label>
                         <input type="text" class="form-control" id="title" value="{{post.title}}">
-                        <div class="form-error"></div>
                     </div>
                     <div class="form-group">
                         <label for="author">작성자</label>
                         <input type="text" class="form-control" id="author" value="{{post.author}}" readonly>
-                        <div class="form-error"></div>
                     </div>
                     <div class="form-group">
                         <label for="content">내용</label>
                         <textarea class="form-control" id="content">{{post.content}}</textarea>
-                        <div class="form-error"></div>
                     </div>
                 </form>
             </div>
@@ -39,8 +35,10 @@
             <div class="row" style="margin-top:20px;">
                 <div class="col-md-12" style="text-align:center;">
                     <a href="javascript:;" role="button" class="btn btn-secondary" id="btn-list-page" data-index="">목록</a>
-                    <a href="javascript:;" role="button" class="btn btn-primary" id="btn-update">수정</a>
-                    <a href="javascript:;" role="button" class="btn btn-danger" id="btn-delete">삭제</a>
+                    {{#isAuthor}}
+                        <a href="javascript:;" role="button" class="btn btn-primary" id="btn-update-page" data-target="{{post.id}}">수정</a>
+                        <a href="javascript:;" role="button" class="btn btn-danger" id="btn-delete">삭제</a>
+                    {{/isAuthor}}
                 </div>
             </div>
         </div>
