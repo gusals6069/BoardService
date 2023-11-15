@@ -11,3 +11,9 @@
 
 - add message properties
 - add form validation
+
+### 2023/11/15 변경사항
+
+- add Exception process and page
+- add Social Login page (oAuth2 Google Login only)
+- add UserSession Annotation (Use HandlerMethodArgumentResolver)

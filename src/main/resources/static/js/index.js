@@ -29,6 +29,14 @@ var main = {
             });
         }
 
+        if(document.querySelector('#btn-view-page') != null) {
+            document.querySelector('#btn-view-page').addEventListener('click', function(evt){
+                if(this.dataset.target != null){
+                    location.href = '/posts/view/' + this.dataset.target;
+                }
+            });
+        }
+
         if(document.querySelector('#btn-update-page') != null) {
             document.querySelector('#btn-update-page').addEventListener('click', function(evt){
                 if(this.dataset.target != null){
@@ -55,7 +63,7 @@ var main = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
-            modal.show('글이 등록되었습니다.', function(){
+            modal.alertShow('글이 등록되었습니다.', function(){
                  window.location.href = '/';
             });
         }).fail(function (error) {
@@ -63,7 +71,7 @@ var main = {
                 main.valid(error);
             }else{
                 console.log(error);
-                modal.show('오류가 발생했습니다.', null);
+                modal.alertShow('오류가 발생했습니다.', null);
             }
         });
     },
@@ -81,14 +89,14 @@ var main = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
-            modal.show('글이 수정되었습니다.', function(){
+            modal.alertShow('글이 수정되었습니다.', function(){
                 window.location.href = '/';
             });
         }).fail(function (error) {
             if(error.responseJSON.type == 'valid'){
                 main.valid(error);
             }else{
-                modal.show('오류가 발생했습니다.', null);
+                modal.alertShow('오류가 발생했습니다.', null);
             }
         });
     },
@@ -99,7 +107,7 @@ var main = {
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {
-            modal.show('글이 삭제되었습니다.', function(){
+            modal.alertShow('글이 삭제되었습니다.', function(){
                 window.location.href = '/';
             });
         }).fail(function (error) {
@@ -107,7 +115,7 @@ var main = {
             if(error.responseJSON.type == 'valid'){
                 main.valid(error);
             }else{
-                modal.show('오류가 발생했습니다.', null);
+                modal.alertShow('오류가 발생했습니다.', null);
             }
         });
     },
@@ -143,44 +151,85 @@ var main = {
                 document.querySelector('.table-sm').style.display = 'inline-table';
             }
         }
+    },
+    login : function () {
+        location.href = "/userLogin";
+    },
+    logout : function () {
+        modal.alertShow('로그아웃 되셨습니다.', function(){
+            window.location.href = '/logout';
+        });
     }
 };
 
-var modalObject;
-var modalCloseBtn;
+var modalObject1;
+var modalObject2;
 
 var modal = {
     init : function () {
-        modalObject = bootstrap.Modal.getOrCreateInstance('#alertModal');
-        modalCloseBtn = document.querySelectorAll('.btn-modal-close');
+        modalObject1 = bootstrap.Modal.getOrCreateInstance('#alertModal');
+        modalObject2 = bootstrap.Modal.getOrCreateInstance('#confirmModal');
     },
-    show : function (msg, callback) {
-        if(modalObject == null) return;
+    alertShow : function (msg, callback) {
+        if(modalObject1 == null) return;
+        document.querySelector('#alertModal .modal-body').textContent = msg; // 로드마다 치환
+        modalObject1.show();
 
-        document.querySelector('.modal-body').textContent = msg; // 로드마다 치환
-        modalObject.show();
+        /*var exec = function(evt){
+            evt.preventDefault();
+            if(callback != null && typeof callback === 'function'){
+                callback();
+                modal.alertHide();
+            }
+        }
 
-        modalCloseBtn.forEach(function(item, idx){
-            item.addEventListener('click', function(evt){
-                evt.preventDefault();
-
-                if(callback != null){ callback(); }
-                modal.hide();
-            });
-        });
+        document.querySelectorAll('#alertModal .btn-modal-close').forEach(function(item, idx){
+            item.removeEventListener('click', exec);
+            item.addEventListener('click', exec);
+        });*/
     },
-    hide : function () {
-        if(modalObject == null) return;
+    alertHide : function () {
+        if(modalObject1 == null) return;
+        document.querySelector('#alertModal .modal-body').textContent = ''; // 로드마다 치환
+        modalObject1.hide();
+    },
+    confirmShow : function (msg, callback) {
+        if(modalObject2 == null) return;
+        document.querySelector('#confirmModal .modal-body').textContent = msg; // 로드마다 치환
+        modalObject2.show();
 
-        document.querySelector('.modal-body').textContent = ''; // 로드마다 치환
-        modalObject.hide();
+        /*var exec = function(evt){
+            evt.preventDefault();
+            if(callback != null && typeof callback === 'function'){
+                callback();
+                modal.confirmHide();
+            }
+        }
+
+        var exec2 = function(evt){
+            evt.preventDefault();
+            modal.confirmHide();
+        }
+
+        document.querySelector('#confirmModal .btn-modal-confirm').removeEventListener('click', exec);
+        document.querySelector('#confirmModal .btn-modal-confirm').addEventListener('click', exec);
+
+        document.querySelectorAll('#confirmModal .btn-modal-close').forEach(function(item, idx){
+            item.removeEventListener('click', exec2);
+            item.addEventListener('click', exec2);
+        });*/
+    },
+    confirmHide : function () {
+        if(modalObject2 == null) return;
+        document.querySelector('#confirmModal .modal-body').textContent = ''; // 로드마다 치환
+        modalObject2.hide();
     }
 }
 
 window.addEventListener('DOMContentLoaded', function(){
     main.init();
-    modal.init();
     main.resize();
+    modal.init();
 });
 
 window.addEventListener('resize', function(){

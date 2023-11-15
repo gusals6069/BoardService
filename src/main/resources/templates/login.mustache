@@ -19,14 +19,59 @@
         border-radius: 10px;
     }
     .form-guide {
-        font-size: 18px;
+        font-size: 24px;
         font-weight: bold !important;
     }
-    .btn_login img{
-        width: 300px;
+    .btn_login img {
+        width: 40%;
         height: auto;
         margin: 10px auto;
         display: block;
+    }
+    @media (max-width: 1280px) {
+        .form-guide {
+            font-size: 24px;
+            font-weight: bold !important;
+        }
+        .btn_login img {
+            width: 40%;
+        }
+    }
+    @media (max-width: 960px) {
+        .form-guide {
+            font-size: 22px;
+            font-weight: bold !important;
+        }
+        .btn_login img {
+            width: 50%;
+        }
+    }
+    @media (max-width: 720px) {
+        .form-guide {
+            font-size: 18px;
+            font-weight: bold !important;
+        }
+        .btn_login img {
+            width: 60%;
+        }
+    }
+    @media (max-width: 540px) {
+        .form-guide {
+            font-size: 14px;
+            font-weight: bold !important;
+        }
+        .btn_login img {
+            width: 80%;
+        }
+    }
+    @media (max-width: 360px) {
+        .form-guide {
+            font-size: 13px;
+            font-weight: bold !important;
+        }
+        .btn_login img {
+            width: 90%;
+        }
     }
 </style>
 

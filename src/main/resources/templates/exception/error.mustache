@@ -1,0 +1,43 @@
+{{>layout/header}}
+{{>layout/menu}}
+
+<style>
+    body{
+        background-color : #212529!important;
+    }
+    .container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-exception {
+        max-width: 90%;
+        padding: 10% 5%;
+        margin: auto;
+        background-color:#ffffff;
+        border-radius: 10px;
+    }
+    .form-exception h1 {
+        font-weight: bold !important;
+    }
+    .form-exception h3 {
+        font-weight: bold !important;
+    }
+</style>
+
+<body class="text-center">
+    <div class="container">
+        <div class="form-exception">
+            <h1>{{errorCode}}</h1>
+            <h3>{{errorMessage}}</h3>
+            <div class="row" style="margin-top:20px;">
+                <div class="col-md-12" style="text-align:center;">
+                    <a href="javascript:;" role="button" class="btn btn-secondary" id="btn-list-page" data-target="">메인화면으로</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{{>layout/footer}}
