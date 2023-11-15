@@ -33,19 +33,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                    .anyRequest()	// 모든 요청에 대해서 허용하라.
-                    .permitAll()
-                .and()
-                    .csrf().disable()
-                    .headers().frameOptions().disable()
-                .and()
-                    .logout()
-                    .logoutSuccessUrl("/")	// 로그아웃에 대해서 성공하면 "/"로 이동
-                .and()
-                    .oauth2Login()
-                    .defaultSuccessUrl("/")
-                    .userInfoEndpoint()
-                    .userService(userAuthService);	// oauth2 로그인에 성공하면, 유저 데이터를 가지고 우리가 생성한
+            .authorizeRequests()
+                .anyRequest()	// 모든 요청에 대해서 허용하라.
+                .permitAll()
+            .and()
+                .csrf().disable()
+                .headers().frameOptions().disable()
+            .and()
+                .logout()
+                .logoutSuccessUrl("/")	// 로그아웃에 대해서 성공하면 "/"로 이동
+            .and()
+                .oauth2Login()
+                .defaultSuccessUrl("/")
+                .userInfoEndpoint()
+                .userService(userAuthService);
     }
 }
