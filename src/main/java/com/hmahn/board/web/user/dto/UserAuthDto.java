@@ -50,7 +50,7 @@ public class UserAuthDto {
                 .name((String) response.get("name"))
                 .email((String) response.get("email"))
                 .picture((String) response.get("profile_image"))
-                .attributes(attributes)
+                .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
     }

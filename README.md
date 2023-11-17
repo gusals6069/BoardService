@@ -6,7 +6,6 @@
 - Spring Boot Versoin : 2.1.7 RELEASE
 - Use : Security, DevTools, Lombok, JPA(hibernate), H2, Mustache, Bootstrap, fontawesome (icon)
 
-
 ### 2023/11/10 변경사항
 
 - add message properties
@@ -17,3 +16,8 @@
 - add Exception process and page
 - add Social Login page (oAuth2 Google Login only)
 - add UserSession Annotation (Use HandlerMethodArgumentResolver)
+
+### 2023/11/17 변경사항
+
+- add Social Login page (oAuth2 Naver Login)
+- add alert/confirm modal callback process

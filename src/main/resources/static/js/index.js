@@ -63,15 +63,14 @@ var main = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
-            modal.alertShow('글이 등록되었습니다.', function(){
+            modal.modalOpen('alert', '글이 등록되었습니다.',function(){
                  window.location.href = '/';
             });
         }).fail(function (error) {
             if(error.responseJSON.type == 'valid'){
                 main.valid(error);
             }else{
-                console.log(error);
-                modal.alertShow('오류가 발생했습니다.', null);
+                modal.modalOpen('alert','오류가 발생했습니다.',null);
             }
         });
     },
@@ -89,34 +88,36 @@ var main = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
-            modal.alertShow('글이 수정되었습니다.', function(){
+            modal.modalOpen('alert','글이 수정되었습니다.',function(){
                 window.location.href = '/';
             });
         }).fail(function (error) {
             if(error.responseJSON.type == 'valid'){
                 main.valid(error);
             }else{
-                modal.alertShow('오류가 발생했습니다.', null);
+                modal.modalOpen('alert','오류가 발생했습니다.',null);
             }
         });
     },
     delete : function () {
-        $.ajax({
-            type: 'DELETE',
-            url: '/api/posts/'+document.querySelector('#id').value,
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8'
-        }).done(function() {
-            modal.alertShow('글이 삭제되었습니다.', function(){
-                window.location.href = '/';
+        modal.modalOpen('confirm','글을 삭제하시겠습니까?',function(){
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/posts/'+document.querySelector('#id').value,
+                dataType: 'json',
+                contentType:'application/json; charset=utf-8'
+            }).done(function() {
+                modal.modalOpen('alert','글이 삭제되었습니다.',function(){
+                    window.location.href = '/';
+                });
+            }).fail(function (error) {
+                console.log(error);
+                if(error.responseJSON.type == 'valid'){
+                    main.valid(error);
+                }else{
+                    modal.modalOpen('alert','오류가 발생했습니다.',null);
+                }
             });
-        }).fail(function (error) {
-            console.log(error);
-            if(error.responseJSON.type == 'valid'){
-                main.valid(error);
-            }else{
-                modal.alertShow('오류가 발생했습니다.', null);
-            }
         });
     },
     valid : function(res) {
@@ -156,80 +157,76 @@ var main = {
         location.href = "/userLogin";
     },
     logout : function () {
-        modal.alertShow('로그아웃 되셨습니다.', function(){
+        modal.modalOpen('alert', '로그아웃 되셨습니다.',function(){
             window.location.href = '/logout';
         });
     }
 };
 
-var modalObject1;
-var modalObject2;
+
+var modalObject;
+var modalObjectEvent = {close: null, confirm: null};
 
 var modal = {
-    init : function () {
-        modalObject1 = bootstrap.Modal.getOrCreateInstance('#alertModal');
-        modalObject2 = bootstrap.Modal.getOrCreateInstance('#confirmModal');
+    modalChk : function() {
+        var isDisplay = false;
+        document.querySelectorAll(".modal").forEach(function(item, index){
+            if(item.classList.contains("show")){ isDisplay = true; }
+        });
+        return isDisplay;
     },
-    alertShow : function (msg, callback) {
-        if(modalObject1 == null) return;
-        document.querySelector('#alertModal .modal-body').textContent = msg; // 로드마다 치환
-        modalObject1.show();
+    modalOpen : function(type, message, callback) {
+        if(!modal.modalChk()){
+            modalObject = bootstrap.Modal.getOrCreateInstance('#' + type + 'Modal');
 
-        /*var exec = function(evt){
-            evt.preventDefault();
-            if(callback != null && typeof callback === 'function'){
-                callback();
-                modal.alertHide();
+            var btnHide = modalObject._element.querySelector(".btn-modal-close");
+            if( btnHide != null ){
+                if(modalObjectEvent.close != null){
+                    btnHide.removeEventListener('click', modalObjectEvent.close);
+                    modalObjectEvent.close = null;
+                }
+                modalObjectEvent.close = function(){
+                    modal.modalHide();
+                    if(type == 'alert'){
+                        if(callback != null && typeof callback === 'function'){
+                            setTimeout(callback, 500);
+                        }
+                    }
+                }
+                btnHide.addEventListener('click', modalObjectEvent.close);
             }
-        }
-
-        document.querySelectorAll('#alertModal .btn-modal-close').forEach(function(item, idx){
-            item.removeEventListener('click', exec);
-            item.addEventListener('click', exec);
-        });*/
-    },
-    alertHide : function () {
-        if(modalObject1 == null) return;
-        document.querySelector('#alertModal .modal-body').textContent = ''; // 로드마다 치환
-        modalObject1.hide();
-    },
-    confirmShow : function (msg, callback) {
-        if(modalObject2 == null) return;
-        document.querySelector('#confirmModal .modal-body').textContent = msg; // 로드마다 치환
-        modalObject2.show();
-
-        /*var exec = function(evt){
-            evt.preventDefault();
-            if(callback != null && typeof callback === 'function'){
-                callback();
-                modal.confirmHide();
+            var btnExec = modalObject._element.querySelector(".btn-modal-confirm");
+            if( btnExec != null ){
+                if(modalObjectEvent.confirm != null){
+                    btnExec.removeEventListener('click', modalObjectEvent.confirm);
+                    modalObjectEvent.confirm = null;
+                }
+                modalObjectEvent.confirm = function(){
+                    if(type == 'confirm'){
+                        modal.modalHide();
+                        if(callback != null && typeof callback === 'function'){
+                            setTimeout(callback, 500);
+                        }
+                    }
+                }
+                btnExec.addEventListener('click', modalObjectEvent.confirm);
             }
+            modalObject._element.querySelector(".modal-body").textContent = message;
+            modalObject.show();
+        }else{
+            console.log("already activated");
         }
-
-        var exec2 = function(evt){
-            evt.preventDefault();
-            modal.confirmHide();
-        }
-
-        document.querySelector('#confirmModal .btn-modal-confirm').removeEventListener('click', exec);
-        document.querySelector('#confirmModal .btn-modal-confirm').addEventListener('click', exec);
-
-        document.querySelectorAll('#confirmModal .btn-modal-close').forEach(function(item, idx){
-            item.removeEventListener('click', exec2);
-            item.addEventListener('click', exec2);
-        });*/
     },
-    confirmHide : function () {
-        if(modalObject2 == null) return;
-        document.querySelector('#confirmModal .modal-body').textContent = ''; // 로드마다 치환
-        modalObject2.hide();
+    modalHide : function() {
+        if(modalObject == null) return;
+        modalObject._element.querySelector(".modal-body").textContent = null;
+        modalObject.hide();
     }
 }
 
 window.addEventListener('DOMContentLoaded', function(){
     main.init();
     main.resize();
-    modal.init();
 });
 
 window.addEventListener('resize', function(){
