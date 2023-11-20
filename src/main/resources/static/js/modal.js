@@ -49,6 +49,7 @@ var modal = {
             modalObject.show();
         }else{
             console.log("already activated");
+            return;
         }
     },
     modalHide : function() {

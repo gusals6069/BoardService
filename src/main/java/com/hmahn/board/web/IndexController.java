@@ -44,6 +44,11 @@ public class IndexController {
     @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, @LoginUser UserSessionDto user,
                               HttpServletResponse response, Model model) throws Exception {
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }else{
+            return "redirect:/userLogin";
+        }
 
         PostsResponseDto dto = null;
         try {
@@ -63,10 +68,6 @@ public class IndexController {
             model.addAttribute("category3", dto.getCategory().equals("소식") ? true : false);
         }else{
             response.sendError(204);
-        }
-
-        if (user == null || !user.getName().equals(dto.getAuthor())) {
-            return "redirect:/userLogin";
         }
 
         return "posts-update";
@@ -94,8 +95,10 @@ public class IndexController {
         }
 
         if (user != null && user.getName().equals(dto.getAuthor())) {
+            model.addAttribute("userName", user.getName());
             model.addAttribute("isAuthor", true);
         }else{
+            model.addAttribute("userName", null);
             model.addAttribute("isAuthor", false);
         }
 

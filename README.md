@@ -21,3 +21,9 @@
 
 - add Social Login page (oAuth2 Naver Login)
 - add alert/confirm modal callback process
+
+### 2023/11/20 변경사항
+
+- add Social Login page (oAuth2 Kakao Login)
+- charge jdk version (1.8.0_66 -> 1.8.0_391)
+- ※ To use Kakao oAuth2 login, you need to use JDK higher than the 1.8.0_101 version
