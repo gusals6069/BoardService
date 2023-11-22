@@ -1,0 +1,101 @@
+/* sweetAlert Custom modal */
+
+.swal2-container .swal2-icon {
+    margin: 1.25em auto;
+}
+
+.swal2-container .swal2-html-container {
+    display: block;
+    font-size: 1.35em;
+    color: #d9d9d9;
+    text-align: center;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    margin-bottom: 1em;
+}
+
+.modal_button {
+    display: inline-block;
+    font-weight: bold;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin: 0 0.5rem;
+    padding:0.75em 1em;
+    font-size: 1rem;
+    line-height: 1.25;
+    letter-spacing: 0.1em;
+    border-radius: 0.25rem;
+    box-shadow: inset 0 0 0 2px #19191a;
+    transition: all 0.15s ease-in-out;
+}
+
+.modal_button:hover {
+    box-shadow: inset 0 0 0 2px #19191a;
+}
+
+.modal_button_confirm {
+    color: #fff;
+    border:0;
+    border-radius: 0.5em;
+    height: auto;
+    font-size: 1em;
+    line-height: normal;
+    background-color: #7066e0;
+    border-color: #7066e0;
+}
+
+.modal_button_confirm:hover {
+    color: #fff;
+    background-color: #6359cf;
+    border-color: #6359cf;
+}
+
+.modal_button_success {
+    color: #fff;
+    border:0;
+    border-radius: 0.5em;
+    height: auto;
+    font-size: 1em;
+    line-height: normal;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.modal_button_success:hover {
+    color: #fff;
+    background-color: #218838;
+    border-color: #218838;
+}
+
+.modal_button_deny {
+    color: #fff;
+    border:0;
+    border-radius: 0.5em;
+    height: auto;
+    font-size: 1em;
+    line-height: normal;
+    background-color: #dc3741
+}
+
+.modal_button_deny:hover {
+    color: #fff;
+    background-color: #c3252e;
+    border-color: #c3252e;
+}
+
+.modal_button_cancel {
+    color: #fff;
+    border:0;
+    border-radius: 0.5em;
+    height: auto;
+    font-size: 1em;
+    line-height: normal;
+    background-color: #6e7881
+}
+
+.modal_button_cancel:hover {
+    color: #fff;
+    background-color: #535c65;
+    border-color: #535c65;
+}

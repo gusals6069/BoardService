@@ -1,78 +1,78 @@
-{{>layout/header}}
-{{>layout/menu}}
-
-<body>
-    <div class="container" style="flex:1;">
-        <h2 class="main-title">게시글 리스트</h2>
-        <table class="list table table-horizontal table-bordered table-lg">
-            <colgroup>
-                <col witdh="5%"/>
-                <col witdh="70%"/>
-                <col witdh="10%"/>
-                <col witdh="15%"/>
-            </colgroup>
-            <thead>
-                <tr>
-                    <th style="text-align:center;">분류</th>
-                    <th style="text-align:center;">제목</th>
-                    <th style="text-align:center;">작성자명</th>
-                    <th style="text-align:center;">수정일자</th>
-                </tr>
-            </thead>
-            <tbody id="body">
-                {{#posts}}
-                    <tr class="data" onclick="main.view('{{id}}')">
-                        <td style="text-align:center;"><b style="color:blue;">[{{category}}]</b></td>
-                        <td style="text-align:center;">{{title}}</td>
-                        <td style="text-align:center;">{{author}}</td>
-                        <td style="text-align:center;">{{modifiedDate}}</td>
-                    </tr>
-                {{/posts}}
-                {{^posts}}
-                    <tr>
-                        <td colspan="4" style="text-align:center;">등록된 게시물이 없습니다.</td>
-                    </tr>
-                {{/posts}}
-            </tbody>
-        </table>
-
-        <table class="list table table-horizontal table-bordered table-sm" style="display:none;">
-            <colgroup>
-                <col witdh="5%"/>
-                <col witdh="95%"/>
-            </colgroup>
-            <tbody id="body">
-            {{#posts}}
-                <tr class="data" onclick="main.view('{{id}}')">
-                    <td style="text-align:center; vertical-align:middle;">{{id}}</td>
-                    <td style="text-align:center; vertical-align:middle;">
-                        <div class="title" style="font-size:15px; padding-left:10px; text-align:left; margin-bottom:5px; "><b style="color:blue;">[{{category}}]</b> {{title}}</div> <!-- 댓글 수도 표시해야함 -->
-                        <div class="info"  style="font-size:12px; padding-left:10px; text-align:left;">
-                            <span class="writer">작성자 : {{author}}</span>
-                            <span class="text_bar"> | </span>
-                            <span class="hit">조회수 : <strong>0</strong></span> <!-- 조회수 카운터도 추가해야함 -->
-                            <span class="text_bar"> | </span>
-                            <span class="modifyTime">{{modifiedDate}}</span>
-                        </div>
-                    </td>
-                </tr>
-            {{/posts}}
-            {{^posts}}
-                <tr class="noData">
-                    <td colspan="2" style="text-align:center; vertical-align:middle;">등록된 게시물이 없습니다.</td>
-                </tr>
-            {{/posts}}
-            </tbody>
-        </table>
-
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-12" style="text-align:right;">
-                    <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+<!DOCTYPE HTML>
+<html>
+    {{>import/header}}
+    <body class="is-preload">
+        <div id="wrapper">
+            {{>import/menu}}
+            <section id="banner" class="major">
+                <div class="inner">
+                    <header class="major">
+                        <h1>Hey, I'm Hyeonmin An</h1> <!-- 타이핑 애니메이션 추가할 수 있다면 추가 -->
+                    </header>
+                    <div class="content">
+                        <p>You can check my introduction and my Career.<br/>and also You can use Springboot BoardService I developed.</p>
+                        <ul class="actions">
+                            <li><a href="#one" class="button next scrolly">Get Started</a></li>
+                        </ul>
+                    </div>
                 </div>
+            </section>
+            <div id="main">
+                <section id="one" class="tiles">
+                    <article>
+                        <span class="image">
+                            <img src="/webimage/main/tile01.jpg" alt="INTRODUCE" />
+                        </span>
+                        <header class="major">
+                            <h3><a href="/about" class="link">INTRODUCE</a></h3>
+                            <p>I started developing backend in 2015.</p>
+                        </header>
+                    </article>
+                    <article>
+                        <span class="image">
+                            <img src="/webimage/main/tile02.jpg" alt="SKILLS" />
+                        </span>
+                        <header class="major">
+                            <h3><a href="/about" class="link">SKILLS</a></h3>
+                            <p>I have a lot of develop skills.</p>
+                        </header>
+                    </article>
+                    <article>
+                        <span class="image">
+                            <img src="/webimage/main/tile03.jpg" alt="CAREER" />
+                        </span>
+                        <header class="major">
+                            <h3><a href="/career" class="link">CAREER</a></h3>
+                            <p>I have participated in various development projects.</p>
+                        </header>
+                    </article>
+                    <article>
+                        <span class="image">
+                            <img src="/webimage/main/tile04.jpg" alt="BOARD" />
+                        </span>
+                        <header class="major">
+                            <h3><a href="/board/list" class="link">BOARD</a></h3>
+                            <p>It is a board service produced using Restful API.</p>
+                        </header>
+                    </article>
+                </section>
+                <section id="two">
+                    <div class="inner">
+                        <header class="major">
+                            <h2>About Me</h2>
+                        </header>
+                        <p style="font-size:0.825em;">
+                            프로젝트에 참여했고, 많은 오류를 겪었으며, 그 오류들로 인해 지금도 제 부족함을 알아가고 있습니다.<br/>
+                            하지만 제가 미숙한 것을 알기에 배움을 게을리하지 않고 있습니다.<br/>
+                            더 정진하여 완성도 높은 코드, 유지보수하기 쉬운 코드, 사용자가 좋아하는 UI/UX를 만들고 싶습니다.
+                        </p>
+                        <ul class="actions">
+                            <li><a href="/about" class="button next scrolly">More</a></li>
+                        </ul>
+                    </div>
+                </section>
             </div>
+            {{>import/footer}}
         </div>
-    </div>
-</body>
-
-{{>layout/footer}}
+    </body>
+</html>

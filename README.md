@@ -1,7 +1,6 @@
 ## Spring Boot를 이용한 간단한 CRUD게시판
 
-- Type : Gradle
-- Java Version : 1.8
+- JDK Version : 1.8.0_101 이상 권장
 - Gradle Version : 7.5
 - Spring Boot Versoin : 2.1.7 RELEASE
 - Use : Security, DevTools, Lombok, JPA(hibernate), H2, Mustache, Bootstrap, fontawesome (icon)
@@ -25,5 +24,5 @@
 ### 2023/11/20 변경사항
 
 - add Social Login page (oAuth2 Kakao Login)
-- charge jdk version (1.8.0_66 -> 1.8.0_391)
+- change jdk version (1.8.0_66 -> 1.8.0_391)
 - ※ To use Kakao oAuth2 login, you need to use JDK higher than the 1.8.0_101 version
