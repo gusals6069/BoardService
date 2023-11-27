@@ -4,7 +4,9 @@ import com.hmahn.board.domain.user.User;
 import com.hmahn.board.domain.user.UserRepository;
 import com.hmahn.board.web.user.dto.UserAuthDto;
 import com.hmahn.board.web.user.dto.UserSessionDto;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -16,6 +18,10 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
+
+/**
+ *  소셜로그인 서비스
+ */
 
 @RequiredArgsConstructor
 @Service
@@ -34,7 +40,7 @@ public class UserAuthService implements OAuth2UserService<OAuth2UserRequest, OAu
 
         UserAuthDto attributes = UserAuthDto.of(registrationId, userNameAttributeName, oAuth2User.getAttributes()); // oAuth2User의 데이터를 담을 DTO
 
-        User user = saveOrUpdate(attributes);
+        User user = merge(attributes);
         httpSession.setAttribute("user", new UserSessionDto(user)); // 세션에 담을 사용자 정보 DTO
 
         return new DefaultOAuth2User(
@@ -42,13 +48,14 @@ public class UserAuthService implements OAuth2UserService<OAuth2UserRequest, OAu
         );
     }
 
-    private User saveOrUpdate(UserAuthDto attributes) {
+    private User merge(UserAuthDto attributes) {
         User user = userRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
                 .orElse(attributes.toEntity());
 
-        // 가입여부 체크 후 있으면 업데이트 없으면, 게스트 계정으로 저장
+        // 가입여부 체크 후 있으면 업데이트 없으면, 신규로 저장
         return userRepository.save(user);
     }
+
 }
 

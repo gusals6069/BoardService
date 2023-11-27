@@ -10,7 +10,7 @@
                     <div class="fields">
                         <div class="field half">
                             <label for="from_name" class="form-label">Name</label>
-                            <input type="text" name="from_name" id="from_name" class="invalid-check" required autocomplete="off"/>
+                            <input type="text" name="from_name" id="from_name" class="invalid-check" required autocomplete="off" placeholder="Please enter your name"/>
                             <div class="invalid-feedback">
                                 <span class="icon" style="top:0.225em;">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -22,7 +22,7 @@
                         </div>
                         <div class="field half">
                             <label for="from_email" class="form-label">Email</label>
-                            <input type="text" name="from_email" id="email" class="invalid-check" required autocomplete="off"/>
+                            <input type="text" name="from_email" id="email" class="invalid-check mail-format" required autocomplete="off" placeholder="Please enter your mail"/>
                             <div class="invalid-feedback">
                                 <span class="icon" style="top:0.225em;">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -34,7 +34,7 @@
                         </div>
                         <div class="field">
                             <label for="message" class="form-label">Message</label>
-                            <textarea name="message" id="message" rows="6" class="invalid-check" required autocomplete="off"></textarea>
+                            <textarea name="message" id="message" rows="6" class="invalid-check" required autocomplete="off" placeholder="Please enter your message"></textarea>
                             <div class="invalid-feedback" style="display">
                                 <span class="icon" style="top:0.225em;">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -46,8 +46,8 @@
                         </div>
                     </div>
                     <ul class="actions">
-                        <li><input type="button" value="Send Message" class="primary" /></li>
-                        <li><input type="reset"  value="Clear" /></li>
+                        <li><input type="button" value="Send Message" class="send primary" /></li>
+                        <li><input type="button" value="Clear"        class="reset" /></li>
                     </ul>
                 </form>
             </section>
@@ -56,14 +56,15 @@
                     <div class="contact-method">
                         <span class="icon solid alt fa-envelope"></span>
                         <h3>Email</h3>
-                        <a href="#">gusals6069@gmail.com</a>
+                        <a href="mailto:gusals6069@gmail.com">gusals6069@gmail.com</a>
                     </div>
                 </section>
                 <section>
                     <div class="contact-method">
                         <span class="icon solid alt fa-phone"></span>
                         <h3>Phone</h3>
-                        <span>010-9967-3786</span>
+                        <!--<span>010-9967-3786</span>-->
+                        <a href="tel:01099673786">010-9967-3786</a>
                     </div>
                 </section>
                 <section>
@@ -93,16 +94,17 @@
     <script type="text/javascript" src="/script/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/script/jquery/jquery.scrolly.min.js"></script>
     <script type="text/javascript" src="/script/jquery/jquery.scrollex.min.js"></script>
+    <script type="text/javascript" src="/script/jquery/jquery.util.js"></script>
     <script type="text/javascript" src="/script/browser/browser.min.js"></script>
     <script type="text/javascript" src="/script/breakpoints/breakpoints.min.js"></script>
-    <script type="text/javascript" src="/script/util.js"></script>
+
     <script type="text/javascript" src="/script/index.js"></script>
 
-    <!-- SweetAlert JS -->
+    <!-- Modal JS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/script/modal.js"></script>
+    <script type="text/javascript" src="/script/util/modal.js"></script>
 
     <!-- Email JS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/script/mail.js"></script>
+    <script type="text/javascript" src="/script/util/mail.js"></script>
 </html>

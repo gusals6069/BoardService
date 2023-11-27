@@ -72,6 +72,7 @@ public class UserAuthDto {
         return User.builder()
                 .name(name)
                 .email(email)
+                .password(null)
                 .picture(picture)
                 .role(Role.USER)
                 .build();

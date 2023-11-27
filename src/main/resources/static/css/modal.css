@@ -1,19 +1,59 @@
-/* sweetAlert Custom modal */
+/* sweetAlert Custom modal by gusals6069 */
 
-.swal2-container .swal2-icon {
-    margin: 1.25em auto;
+.modal_frame {
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    width: 32em;
+    max-width: 100%;
+    padding: 1.5em 1.25em;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background: #19191a;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: #2a2f4a;
+    animation-duration: 0.5s;
 }
 
-.swal2-container .swal2-html-container {
+.modal_icon {
+    font-weight:bold !important;
+    margin: 0.5em auto 1.25em;
+}
+
+.swal2-info,
+.swal2-warning,
+.swal2-question {
+    animation: modal_icon_rotate .5s;
+}
+
+.swal2-question div {
+    animation: modal_icon_question .8s;
+}
+
+.swal2-info div, .swal2-warning div  {
+    animation: modal_icon_attention .8s;
+}
+
+.modal_title {
+    font-size: 1.5em;
+    margin: 0 0 0.1em 0.2em;
+    letter-spacing: 0.3em;
+}
+
+.modal_text {
     display: block;
-    font-size: 1.35em;
-    color: #d9d9d9;
+    font-size: 1.15em;
+    font-weight: 600;
+    color: #8b8b8b;
     text-align: center;
     font-family: "Source Sans Pro", Helvetica, sans-serif;
-    margin-bottom: 1em;
+    margin-bottom: 0.1em;
 }
 
 .modal_button {
+    color: #ffffff;
     display: inline-block;
     font-weight: bold;
     font-family: "Source Sans Pro", Helvetica, sans-serif;
@@ -21,81 +61,136 @@
     white-space: nowrap;
     vertical-align: middle;
     margin: 0 0.5rem;
-    padding:0.75em 1em;
-    font-size: 1rem;
-    line-height: 1.25;
-    letter-spacing: 0.1em;
-    border-radius: 0.25rem;
-    box-shadow: inset 0 0 0 2px #19191a;
+    padding: 0 1.75em;
+    font-size: 0.85em;
+    line-height: 3.5em;
+    letter-spacing: 0.15em;
+    border-radius: 0.05rem;
+    box-shadow: inset 0 0 0 2px #ffffff;
     transition: all 0.15s ease-in-out;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: transparent;
 }
 
 .modal_button:hover {
-    box-shadow: inset 0 0 0 2px #19191a;
+    color: #9bf1ff;
+    letter-spacing: 0.25em;
+    box-shadow: inset 0 0 0 2px #9bf1ff;
 }
 
-.modal_button_confirm {
-    color: #fff;
-    border:0;
-    border-radius: 0.5em;
-    height: auto;
-    font-size: 1em;
-    line-height: normal;
-    background-color: #7066e0;
-    border-color: #7066e0;
+@-webkit-keyframes modal_icon_rotate {
+    0% {
+        -webkit-transform: rotateX(100deg);
+        transform: rotateX(100deg);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
 }
 
-.modal_button_confirm:hover {
-    color: #fff;
-    background-color: #6359cf;
-    border-color: #6359cf;
+@keyframes modal_icon_rotate {
+    0% {
+        -webkit-transform: rotateX(100deg);
+        transform: rotateX(100deg);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
 }
 
-.modal_button_success {
-    color: #fff;
-    border:0;
-    border-radius: 0.5em;
-    height: auto;
-    font-size: 1em;
-    line-height: normal;
-    background-color: #28a745;
-    border-color: #28a745;
+@-webkit-keyframes modal_icon_question {
+    0% {
+        -webkit-transform: rotateY(-360deg);
+        transform: rotateY(-360deg);
+    }
+
+    100% {
+        -webkit-transform: rotateY(0deg);
+        transform: rotateX(0deg);
+    }
 }
 
-.modal_button_success:hover {
-    color: #fff;
-    background-color: #218838;
-    border-color: #218838;
+@keyframes modal_icon_question {
+    0% {
+        -webkit-transform: rotateY(-360deg);
+        transform: rotateY(-360deg);
+    }
+
+    100% {
+        -webkit-transform: rotateY(0deg);
+        transform: rotateX(0deg);
+    }
 }
 
-.modal_button_deny {
-    color: #fff;
-    border:0;
-    border-radius: 0.5em;
-    height: auto;
-    font-size: 1em;
-    line-height: normal;
-    background-color: #dc3741
+@-webkit-keyframes modal_icon_attention {
+    0% {
+        -webkit-transform: rotateZ(45deg);
+        transform: rotateZ(45deg);
+        opacity: 0;
+    }
+
+    25% {
+        -webkit-transform: rotateZ(-25deg);
+        transform: rotateZ(-25deg);
+        opacity: 0.4;
+    }
+
+    50% {
+        -webkit-transform: rotateZ(15deg);
+        transform: rotateZ(15deg);
+        opacity: 0.8;
+    }
+
+    75% {
+        -webkit-transform: rotateZ(-5deg);
+        transform: rotateZ(-5deg);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+        opacity: 1;
+    }
 }
 
-.modal_button_deny:hover {
-    color: #fff;
-    background-color: #c3252e;
-    border-color: #c3252e;
-}
+@keyframes modal_icon_attention {
+    0% {
+        -webkit-transform: rotateZ(45deg);
+        transform: rotateZ(45deg);
+        opacity: 0;
+    }
 
-.modal_button_cancel {
-    color: #fff;
-    border:0;
-    border-radius: 0.5em;
-    height: auto;
-    font-size: 1em;
-    line-height: normal;
-    background-color: #6e7881
-}
+    25% {
+        -webkit-transform: rotateZ(-25deg);
+        transform: rotateZ(-25deg);
+        opacity: 0.4;
+    }
 
-.modal_button_cancel:hover {
-    color: #fff;
-    background-color: #535c65;
-    border-color: #535c65;
+    50% {
+        -webkit-transform: rotateZ(15deg);
+        transform: rotateZ(15deg);
+        opacity: 0.8;
+    }
+
+    75% {
+        -webkit-transform: rotateZ(-5deg);
+        transform: rotateZ(-5deg);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+        opacity: 1;
+    }
 }

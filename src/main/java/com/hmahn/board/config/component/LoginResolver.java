@@ -1,4 +1,4 @@
-package com.hmahn.board.config;
+package com.hmahn.board.config.component;
 
 import com.hmahn.board.annotation.LoginUser;
 import com.hmahn.board.web.user.dto.UserSessionDto;

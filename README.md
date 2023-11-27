@@ -26,3 +26,13 @@
 - add Social Login page (oAuth2 Kakao Login)
 - change jdk version (1.8.0_66 -> 1.8.0_391)
 - ※ To use Kakao oAuth2 login, you need to use JDK higher than the 1.8.0_101 version
+
+### 2023/11/27 변경사항
+
+- remove basic Bootstrap Css
+- remove basic Bootstrap Modal and Function
+- add layout (fully responsive) / CSS / SASS
+- add modal (sweetAlert2) and custom and callback process
+- add modal animation
+- add EmailJS function (email form)
+- add WebInterceptor process
