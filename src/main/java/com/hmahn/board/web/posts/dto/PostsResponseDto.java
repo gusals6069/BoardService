@@ -12,10 +12,10 @@ public class PostsResponseDto {
     private String author;
 
     public PostsResponseDto(Posts entity){
-        this.id = entity.getId();
-        this.title = entity.getTitle();
-        this.content = entity.getContent();
-        this.category = entity.getCategory();
-        this.author = entity.getAuthor();
+        this.id         = entity.getId();
+        this.title      = entity.getTitle();
+        this.content    = entity.getContent();
+        this.category   = entity.getCategory();
+        this.author     = entity.getAuthor();
     }
 }

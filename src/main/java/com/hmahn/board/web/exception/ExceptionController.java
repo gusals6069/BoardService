@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class ExceptionController implements ErrorController {
-
     @Override
     public String getErrorPath(){
         return null; // 스프링부트 2.3부터는 해당 방법을 사용하지 않는다.

@@ -18,7 +18,14 @@ public class IndexController {
         if (user != null) {
             model.addAttribute("user", user);
         }
-        //model.addAttribute("posts", postsService.findAllDesc());
         return "index";
+    }
+
+    @GetMapping("/about")
+    public String about(@LoginUser UserSessionDto user, Model model) throws Exception {
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+        return "about";
     }
 }

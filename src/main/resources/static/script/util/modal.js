@@ -23,11 +23,12 @@ var modal = {
             icon: type, // success, error, warning, info, question
             showCancelButton: false,
             showDenyButton: false,
-            confirmButtonText: 'Confirm'
-        }).then((result) => {
-            if (result.isConfirmed) {
+            confirmButtonText: 'Confirm',
+            didOpen: null,
+            didClose: function(){
                 if(callback != null && typeof callback === 'function'){
                      setTimeout(callback, 10);
+                     return false;
                 }
             }
         });
@@ -40,12 +41,15 @@ var modal = {
             showCancelButton: false,
             showDenyButton: true,
             confirmButtonText: 'Confirm',
-            denyButtonText: "Cancel"
+            denyButtonText: "Cancel",
+            didOpen: null,
+            didClose: null
         }).then((result) => {
             // 확인을 눌렀을 경우에만 처리
             if (result.isConfirmed) {
                 if(callback != null && typeof callback === 'function'){
                      setTimeout(callback, 10);
+                     return false;
                 }
             }
         });

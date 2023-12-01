@@ -31,7 +31,7 @@
 
 - remove basic Bootstrap Css
 - remove basic Bootstrap Modal and Function
-- add layout (fully responsive) / CSS / SASS
+- add layout (fully responsive) / CSS / SCSS
 - add modal (sweetAlert2) and custom and callback process
 - add modal animation
 - add EmailJS function (email form)

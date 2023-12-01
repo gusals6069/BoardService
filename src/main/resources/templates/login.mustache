@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+    {{>import/header}}
+    <body class="is-preload">
+        <div id="wrapper">
+            {{>import/menu}}
+            <div id="main" class="alt">
+                <section style="background-color:#2e3450;">
+                    <div class="inner">
+                        <header class="major">
+                            <h2>Social Login</h2>
+                        </header>
+                        <p>You need to login to use this website.</p>
+                    </div>
+                </section>
+                <section class="spotlights">
+                    <section style="background-color:#242943;">
+                        <div class="content login">
+                            <div class="inner">
+                                <header>
+                                    <h4>Please select the Social login type</h4>
+                                </header>
+                                <form id="passForm" name="passForm" method="post">
+                                    <div class="row gtr-uniform">
+                                        <div class="col-8">
+                                            <ul class="actions fit">
+                                                <li><a href="/oauth2/authorization/google" class="button primary fit icon icon_google">google login</a></li>
+                                            </ul>
+                                            <ul class="actions fit">
+                                                <li><a href="/oauth2/authorization/naver" class="button primary fit icon icon_naver">naver login</a></li>
+                                            </ul>
+                                            <ul class="actions fit">
+                                                <li><a href="/oauth2/authorization/kakao" class="button primary fit icon icon_kakao">kakao login</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <a href="javascript:;" class="image">
+                            <img src="../webimage/user/login_tile.jpg" alt="" data-position="top center" />
+                        </a>
+                    </section>
+                </section>
+                <section style="background-color:#2e3450;">
+                    <div class="inner" style="padding:2em 0;">
+                        <header class="major" style="margin-bottom:1em;">
+                            <h3>Notice</h3>
+                        </header>
+                        <p style="margin:0;">If there is a problem with changing your password, please contact <a href="mailto:gusals6069@gmail.com" target="_blank">here</a>.</p>
+                    </div>
+                </section>
+            </div>
+            {{>import/footer}}
+        </div>
+    </body>
+</html>

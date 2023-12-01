@@ -1,11 +1,14 @@
 package com.hmahn.board.config;
 
+import com.hmahn.board.domain.user.Role;
 import com.hmahn.board.service.user.UserAuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,9 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserAuthService userAuthService; // 커스텀한 OAuth2UserService DI.
 
-    // 인코더를 빈으로 등록.
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -34,18 +36,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
+                .antMatchers("/api/**").hasAnyAuthority(String.valueOf(Role.USER))
                 .anyRequest()	// 모든 요청에 대해서 허용하라.
                 .permitAll()
             .and()
                 .csrf().disable()
+                .formLogin().disable()
+                .httpBasic().disable()
                 .headers().frameOptions().disable()
             .and()
                 .logout()
                 .logoutSuccessUrl("/")	// 로그아웃에 대해서 성공하면 "/"로 이동
             .and()
                 .oauth2Login()
+                .loginPage("/user/login")
                 .defaultSuccessUrl("/")
                 .userInfoEndpoint()
                 .userService(userAuthService);
+    }
+
+    @Override
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
     }
 }

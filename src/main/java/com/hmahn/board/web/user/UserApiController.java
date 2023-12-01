@@ -1,11 +1,10 @@
 package com.hmahn.board.web.user;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 public class UserApiController {
-
 
 }

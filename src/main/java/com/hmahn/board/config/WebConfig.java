@@ -26,7 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor())
                 .order(2)
                 .addPathPatterns("/*")
-                .excludePathPatterns("/","/error"); // 해당 경로는 인터셉터가 가로채지 않는다
+                .excludePathPatterns("/","/user/login","/error"); // 해당 경로는 인터셉터가 가로채지 않는다
     }
 
     @Override

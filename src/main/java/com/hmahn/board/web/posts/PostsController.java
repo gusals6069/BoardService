@@ -17,15 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 @Controller
 public class PostsController {
-
     private final PostsService postsService;
 
     @GetMapping("/posts/save")
     public String postsSave(@LoginUser UserSessionDto user, Model model) throws Exception {
         if (user != null) {
-            model.addAttribute("userName", user.getName());
+            model.addAttribute("user", user);
         }else{
-            return "redirect:/userLogin";
+            return "redirect:/user/login";
         }
 
         return "posts-save";
@@ -35,9 +34,9 @@ public class PostsController {
     public String postsUpdate(@PathVariable Long id, @LoginUser UserSessionDto user,
                               HttpServletResponse response, Model model) throws Exception {
         if (user != null) {
-            model.addAttribute("userName", user.getName());
+            model.addAttribute("user", user);
         }else{
-            return "redirect:/userLogin";
+            return "redirect:/user/login";
         }
 
         PostsResponseDto dto = null;
@@ -84,11 +83,11 @@ public class PostsController {
             response.sendError(204);
         }
 
-        if (user != null && user.getName().equals(dto.getAuthor())) {
-            model.addAttribute("userName", user.getName());
+        if (user != null && user.getUsername().equals(dto.getAuthor())) {
+            model.addAttribute("username", user.getUsername());
             model.addAttribute("isAuthor", true);
         }else{
-            model.addAttribute("userName", null);
+            model.addAttribute("username", null);
             model.addAttribute("isAuthor", false);
         }
 

@@ -7,6 +7,9 @@ import com.hmahn.board.web.user.dto.UserSessionDto;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -50,7 +53,7 @@ public class UserAuthService implements OAuth2UserService<OAuth2UserRequest, OAu
 
     private User merge(UserAuthDto attributes) {
         User user = userRepository.findByEmail(attributes.getEmail())
-                .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
+                .map(entity -> entity.update(attributes.getUsername(), attributes.getPicture()))
                 .orElse(attributes.toEntity());
 
         // 가입여부 체크 후 있으면 업데이트 없으면, 신규로 저장
