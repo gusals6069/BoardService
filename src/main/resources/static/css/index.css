@@ -2977,7 +2977,13 @@ input, select, textarea {
 					border-radius: 0;
 					display: block;
 					width: 100%;
+
 				}
+
+				.spotlights > section.project > .image:hover {
+				    scale: 0.98;
+                    transition: scale 0.8s;
+                }
 
 				.spotlights > section > .image:before {
 					background: rgba(36, 41, 67, 0.9);
@@ -3046,6 +3052,7 @@ input, select, textarea {
                                 background-repeat: no-repeat;
                                 background-position: 10% center;
                                 background-blend-mode: luminosity;
+                                border-radius: 5px;
                             }
 
                             .spotlights > section > .login > .inner .row a.icon_google {

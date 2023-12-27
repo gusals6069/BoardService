@@ -28,4 +28,12 @@ public class IndexController {
         }
         return "about";
     }
+
+    @GetMapping("/ability")
+    public String ability(@LoginUser UserSessionDto user, Model model) throws Exception {
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+        return "ability";
+    }
 }
