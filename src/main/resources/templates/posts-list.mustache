@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+    {{>import/header}}
+    <body class="is-preload">
+        <div id="wrapper">
+            {{>import/menu}}
+            <section id="banner" class="style2">
+                <div class="inner">
+                    <span class="image">
+                        <img src="/webimage/about/head.jpg" alt="INTRODUCE" />
+                    </span>
+                    <header class="major">
+                        <h1>Board</h1>
+                    </header>
+                    <div class="content">
+                        <p>
+                            <span>Let me Introduce myself and my Career</span>
+                            <span>and also You can check my project</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <div id="main" class="alt">
+                <section id="board" class="tiles">
+                    <div class="inner">
+                        <div class="col-6 col-12-medium">
+                            <div class="table-wrapper">
+                                <table class="alt">
+                                    <colgroup>
+                                        <col width="15%"/>
+                                        <col width="50%"/>
+                                        <col width="15%"/>
+                                        <col width="20%"/>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align:center;">분류</th>
+                                            <th style="text-align:center;">제목</th>
+                                            <th style="text-align:center;">작성자명</th>
+                                            <th style="text-align:center;">수정일자</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#posts}}
+                                            <tr class="data" onclick="post.view('{{id}}')">
+                                                <td style="text-align:center;"><b style="color:blue;">[{{category}}]</b></td>
+                                                <td style="text-align:center;">{{title}}</td>
+                                                <td style="text-align:center;">{{author}}</td>
+                                                <td style="text-align:center;">{{modifiedDate}}</td>
+                                            </tr>
+                                        {{/posts}}
+                                        {{^posts}}
+                                            <tr>
+                                                <td colspan="4" style="text-align:center;">등록된 게시물이 없습니다.</td>
+                                            </tr>
+                                        {{/posts}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <ul class="actions right">
+                            <li><a href="javascript:;" id="btn-save-page" class="button scrolly">게시글 작성</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            {{>import/mail}}
+            {{>import/footer}}
+        </div>
+    </body>
+</html>

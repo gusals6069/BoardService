@@ -1,10 +1,114 @@
 package com.hmahn.board.web.posts;
 
+import com.hmahn.board.service.posts.PostsService;
+import com.hmahn.board.web.posts.dto.PostsSaveRequestDto;
+import com.hmahn.board.web.posts.dto.PostsUpdateRequestDto;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.json.simple.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 public class PostsApiController {
 
+    private final PostsService postsService;
+
+    @PostMapping("/api/posts")
+    public ResponseEntity<?> save(@RequestBody @Valid PostsSaveRequestDto requestDto, BindingResult bindingResult) {
+        JSONObject result = new JSONObject();
+
+        // BindingResult 클래스는 @Valid에 대한 결과값을 가지고 있다.
+        if(bindingResult.hasErrors()) {
+            List<JSONObject> errors = new ArrayList<JSONObject>();
+
+            bindingResult.getAllErrors().forEach(error -> {
+                FieldError fieldError = (FieldError) error;
+
+                JSONObject jsonData = new JSONObject();
+                jsonData.put("fieldId", fieldError.getField());
+                jsonData.put("message", error.getDefaultMessage());
+
+                errors.add(jsonData);
+            });
+
+            result.put("type", "valid");
+            result.put("data",  errors);
+
+            // 에러 발생시 반환
+            // .body("에러발생")이면 에러 발생시 String 에러발생 반환
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(result.toString());
+        }
+
+        try{
+            postsService.save(requestDto);
+        }catch(Exception e){
+            result.put("type", "error");
+            result.put("data", null);
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.toString());
+        }
+        return ResponseEntity.ok(requestDto);
+    }
+
+    @PutMapping("/api/posts/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid PostsUpdateRequestDto requestDto, BindingResult bindingResult) {
+        JSONObject result = new JSONObject();
+
+        // BindingResult 클래스는 @Valid에 대한 결과값을 가지고 있다.
+        if(bindingResult.hasErrors()) {
+            List<JSONObject> errors = new ArrayList<JSONObject>();
+
+            bindingResult.getAllErrors().forEach(error -> {
+                FieldError fieldError = (FieldError) error;
+
+                JSONObject jsonData = new JSONObject();
+                jsonData.put("fieldId", fieldError.getField());
+                jsonData.put("message", error.getDefaultMessage());
+
+                errors.add(jsonData);
+            });
+
+            result.put("type", "valid");
+            result.put("data",  errors);
+
+            // 에러 발생시 반환
+            // .body("에러발생")이면 에러 발생시 String 에러발생 반환
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(result.toString());
+        }
+
+        try{
+            postsService.update(id, requestDto);
+        }catch(Exception e){
+            result.put("type", "error");
+            result.put("data", null);
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.toString());
+        }
+        return ResponseEntity.ok(requestDto);
+    }
+
+    @DeleteMapping("/api/posts/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        JSONObject result = new JSONObject();
+
+        try{
+            postsService.delete(id);
+        }catch(Exception e){
+            result.put("type", "error");
+            result.put("data", null);
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.toString());
+        }
+        return ResponseEntity.ok(id);
+    }
 }

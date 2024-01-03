@@ -2312,7 +2312,7 @@ input, select, textarea {
 			vertical-align: middle;
 		}
 
-		ul.actions.special {
+		ul.actions.center {
 			-moz-justify-content: center;
 			-webkit-justify-content: center;
 			-ms-justify-content: center;
@@ -2321,9 +2321,22 @@ input, select, textarea {
 			margin-left: 0;
 		}
 
-			ul.actions.special li:first-child {
+			ul.actions.center li:first-child {
 				padding-left: 0;
 			}
+
+        ul.actions.right {
+            -moz-justify-content: right;
+            -webkit-justify-content: right;
+            -ms-justify-content: right;
+            justify-content: right;
+            width: 100%;
+            margin-left: 0;
+        }
+
+            ul.actions.right li:first-child {
+                padding-left: 0;
+            }
 
 		ul.actions.stacked {
 			-moz-flex-direction: column;
