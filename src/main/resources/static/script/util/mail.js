@@ -23,16 +23,16 @@ var mailSend = {
             var validObj = item
             var validMsg = validObj.nextElementSibling;
             if( validObj.value == '' && validMsg != undefined ){
-                validMsg.style.display = 'block';
                 validObj.style.border  = '1px solid #ff0000';
+                validMsg.style.display = 'block';
                 validFlag = false;
             }
 
             if( validObj.value != '' && validObj.classList.contains('mail-format') && validMsg != undefined){
                 var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
                 if(!email_regex.test(validObj.value)){
-                    validMsg.style.display = 'block';
                     validObj.style.border  = '1px solid #ff0000';
+                    validMsg.style.display = 'block';
                     validFlag = false;
                 }
             }

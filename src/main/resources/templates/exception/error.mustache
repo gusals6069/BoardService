@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+    {{>import/header}}
+    <body class="is-preload">
+        <div id="wrapper">
+            {{>import/menu}}
+            <div id="main" class="alt">
+                <section id="one">
+                    <div class="inner">
+                        <header class="major">
+                            <h1>Oops!</h1>
+                        </header>
+                        <span class="image main"><img src="../webimage/exception/error.png" alt="" /></span>
+                        <div class="box" style="text-align:center;margin-bottom:4em;">
+                            <h1>{{errorCode}}</h1>
+                            <p style="font-size:0.85em;">{{errorMessage}}</p>
+                        </div>
+                        <div class="col-6 col-12-medium">
+                            <ul class="actions center">
+                                <li>
+                                    <a href="/" class="button primary icon solid fa-home">Home</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            {{>import/footer}}
+        </div>
+    </body>
+</html>

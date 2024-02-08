@@ -18,7 +18,7 @@ var modal = {
     },
     alert : function(type, message, callback) {
         modalObject.fire({
-            title: 'ALERT',
+            title: 'NOTICE',
             text: message,
             icon: type, // success, error, warning, info, question
             showCancelButton: false,

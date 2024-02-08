@@ -2,17 +2,26 @@ package com.hmahn.board.web.posts;
 
 import com.hmahn.board.annotation.LoginUser;
 import com.hmahn.board.service.posts.PostsService;
+import com.hmahn.board.web.posts.dto.PostsListResponseDto;
 import com.hmahn.board.web.posts.dto.PostsResponseDto;
 import com.hmahn.board.web.user.dto.UserSessionDto;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
@@ -20,12 +29,52 @@ public class PostsController {
     private final PostsService postsService;
 
     @GetMapping("/posts/list")
-    public String postList(@LoginUser UserSessionDto user, Model model) throws Exception {
+    public String postList(@RequestParam(required = false, defaultValue = "1") int page,
+                           @LoginUser UserSessionDto user, HttpServletRequest request, Model model) throws Exception {
         if (user != null) {
             model.addAttribute("user", user);
         }
 
-        model.addAttribute("posts", postsService.findAllDesc());
+        String searchType       = request.getParameter("searchType");
+        String searchKeyword    = request.getParameter("searchKeyword");
+
+        PageRequest pageable = PageRequest.of(page-1, 10, Sort.by("id").descending());
+        Page<PostsListResponseDto> list = postsService.findAll(searchType, searchKeyword, pageable);
+
+        int blockLimit = 3;
+        int nwPage = list.getPageable().getPageNumber() + 1;
+        int stPage = (((int) Math.ceil((((double) pageable.getPageNumber() + 1) / blockLimit))) - 1) * blockLimit + 1;
+        int edPage = Math.min((stPage + blockLimit - 1), Math.max(list.getTotalPages(), 1));
+
+
+
+
+        System.out.println("nwPage=="+nwPage);
+        System.out.println("stPage=="+stPage);
+        System.out.println("edPage=="+edPage);
+        System.out.println("(double) pageable.getPageNumber()=="+(double) pageable.getPageNumber());
+        System.out.println("list.getTotalPages()=="+list.getTotalPages());
+
+        ArrayList<Map<String, Object>> pages = new ArrayList<>();
+
+        for(int idx=stPage; idx<=edPage; idx++){
+            Map<String, Object> pageData = new HashMap<>();
+
+            pageData.put("page", idx);
+            pageData.put("curr", idx == nwPage);
+
+            pages.add(pageData);
+        }
+
+        model.addAttribute("posts", list);
+        model.addAttribute("pages", pages);
+        model.addAttribute("next", nwPage + 1);
+        model.addAttribute("prev", nwPage - 1);
+        model.addAttribute("hasNext", list.hasNext());
+        model.addAttribute("hasPrev", list.hasPrevious());
+
+        //model.addAttribute("posts", postsService.findAllDesc());
+
         return "posts-list";
     }
 
@@ -88,9 +137,9 @@ public class PostsController {
                 model.addAttribute("post", dto);
 
                 // mustache 한계로 아래와 같이 설정
-                model.addAttribute("category1", dto.getCategory().equals("유머") ? true : false);
-                model.addAttribute("category2", dto.getCategory().equals("잡담") ? true : false);
-                model.addAttribute("category3", dto.getCategory().equals("소식") ? true : false);
+                model.addAttribute("category1", dto.getCategory().equals("유머"));
+                model.addAttribute("category2", dto.getCategory().equals("잡담"));
+                model.addAttribute("category3", dto.getCategory().equals("소식"));
             }else{
                 throw new IllegalArgumentException();
             }

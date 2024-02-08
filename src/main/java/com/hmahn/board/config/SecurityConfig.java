@@ -35,24 +35,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
-                .antMatchers("/api/**").hasAnyAuthority(String.valueOf(Role.USER))
+                .authorizeRequests()
+                .antMatchers("/api/**").hasAnyAuthority("ROLE_USER")
                 .anyRequest()	// 모든 요청에 대해서 허용하라.
                 .permitAll()
-            .and()
-                .csrf().disable()
-                .formLogin().disable()
-                .httpBasic().disable()
-                .headers().frameOptions().disable()
-            .and()
-                .logout()
-                .logoutSuccessUrl("/")	// 로그아웃에 대해서 성공하면 "/"로 이동
-            .and()
-                .oauth2Login()
-                .loginPage("/user/login")
-                .defaultSuccessUrl("/")
-                .userInfoEndpoint()
-                .userService(userAuthService);
+                .and()
+                    .csrf().disable()
+                    .formLogin().disable()
+                    .httpBasic().disable()
+                    .headers().frameOptions().disable()
+                .and()
+                    .logout()
+                    .logoutSuccessUrl("/")
+                .and()
+                    .oauth2Login()
+                    .loginPage("/user/login")
+                    .defaultSuccessUrl("/")
+                    .userInfoEndpoint()
+                    .userService(userAuthService);
     }
 
     @Override

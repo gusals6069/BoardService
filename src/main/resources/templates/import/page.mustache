@@ -1,0 +1,19 @@
+<html>
+    <ul class="pagination" style="text-align:center;">
+        {{#hasPrev}}
+            <li><a href="javascript:;" onclick="post.list('{{prev}}');" class="button small">Prev</a></li>
+        {{/hasPrev}}
+        {{^hasPrev}}
+            <li><span class="button small disabled">Prev</span></li>
+        {{/hasPrev}}
+        {{#pages}}
+            <li><a href="javascript:;" onclick="post.list('{{page}}');" class="page {{#curr}} active {{/curr}}">{{page}}</a></li>
+        {{/pages}}
+        {{#hasNext}}
+            <li><a href="javascript:;" onclick="post.list('{{next}}');" class="button small">Next</a></li>
+        {{/hasNext}}
+        {{^hasNext}}
+            <li><span class="button small disabled">Next</span></li>
+        {{/hasNext}}
+    </ul>
+</html>

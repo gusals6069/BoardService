@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+    {{>import/header}}
+    <body class="is-preload">
+        <div id="wrapper">
+            {{>import/menu}}
+            <section id="banner" class="style2">
+                <div class="inner">
+                    <span class="image">
+                        <img src="/webimage/about/head.jpg" alt="INTRODUCE" />
+                    </span>
+                    <header class="major">
+                        <h1>My Board</h1>
+                    </header>
+                    <div class="content">
+                        <p>
+                            <span>Bulletin webpage board is the basis and essence of web development</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <div id="main" class="alt">
+                <section id="board">
+                    <div class="inner">
+                        <section>
+                            <div class="contact-method">
+                                <span class="icon solid alt fa-pen"></span>
+                                <h3>Write Article</h3>
+                            </div>
+                            <div class="col-6 col-12-medium">
+                                <form id="postForm" method="post" class="needs-validation" novalidate>
+                                    <input type="hidden" id="id" name="id" value="{{post.id}}" />
+
+                                    <div class="fields">
+                                        <div class="field">
+                                            <label for="category" class="form-label">Category</label>
+                                            <input type="text" id="category" name="category" value="{{post.category}}" aria-readonly="true" readonly />
+                                        </div>
+                                        <div class="field">
+                                            <label for="title" class="form-label">Title</label>
+                                            <input type="text" id="title" name="title" value="{{post.title}}" aria-readonly="true" readonly />
+                                        </div>
+                                        <div class="field">
+                                            <label for="author" class="form-label">Author</label>
+                                            <input type="text" id="author" name="author" value="{{post.author}}" aria-readonly="true" readonly />
+                                        </div>
+                                        <div class="field">
+                                            <label for="content" class="form-label">Content</label>
+                                            <textarea class="form-control" id="content" name="content" aria-readonly="true" readonly>{{post.content}}</textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                                <ul class="actions right">
+                                    <li><input type="button" value="List" class="button" id="btn-list-page" /></li>
+                                    {{#isAuthor}}
+                                        <li><input type="button" value="Delete" class="button primary" id="btn-delete" /></li>
+                                        <li><input type="button" value="Update" class="button primary" id="btn-update-page" data-target="{{post.id}}" /></li>
+                                    {{/isAuthor}}
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+            {{>import/mail}}
+            {{>import/footer}}
+        </div>
+    </body>
+</html>

@@ -10,57 +10,63 @@
                         <img src="/webimage/about/head.jpg" alt="INTRODUCE" />
                     </span>
                     <header class="major">
-                        <h1>Board</h1>
+                        <h1>My Board</h1>
                     </header>
                     <div class="content">
                         <p>
-                            <span>Let me Introduce myself and my Career</span>
-                            <span>and also You can check my project</span>
+                            <span>Bulletin webpage board is the basis and essence of web development</span>
                         </p>
                     </div>
                 </div>
             </section>
             <div id="main" class="alt">
-                <section id="board" class="tiles">
+                <section id="board">
                     <div class="inner">
-                        <div class="col-6 col-12-medium">
-                            <div class="table-wrapper">
-                                <table class="alt">
-                                    <colgroup>
-                                        <col width="15%"/>
-                                        <col width="50%"/>
-                                        <col width="15%"/>
-                                        <col width="20%"/>
-                                    </colgroup>
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align:center;">분류</th>
-                                            <th style="text-align:center;">제목</th>
-                                            <th style="text-align:center;">작성자명</th>
-                                            <th style="text-align:center;">수정일자</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {{#posts}}
-                                            <tr class="data" onclick="post.view('{{id}}')">
-                                                <td style="text-align:center;"><b style="color:blue;">[{{category}}]</b></td>
-                                                <td style="text-align:center;">{{title}}</td>
-                                                <td style="text-align:center;">{{author}}</td>
-                                                <td style="text-align:center;">{{modifiedDate}}</td>
-                                            </tr>
-                                        {{/posts}}
-                                        {{^posts}}
-                                            <tr>
-                                                <td colspan="4" style="text-align:center;">등록된 게시물이 없습니다.</td>
-                                            </tr>
-                                        {{/posts}}
-                                    </tbody>
-                                </table>
+                        <section>
+                            <div class="contact-method">
+                                <span class="icon solid alt fa-list"></span>
+                                <h3>List</h3>
                             </div>
-                        </div>
-                        <ul class="actions right">
-                            <li><a href="javascript:;" id="btn-save-page" class="button scrolly">게시글 작성</a></li>
-                        </ul>
+                            <div class="col-6 col-12-medium">
+                                <div class="table-wrapper">
+                                    <table class="alt">
+                                        <colgroup>
+                                            <col width="15%"/>
+                                            <col width="50%"/>
+                                            <col width="15%"/>
+                                            <col width="20%"/>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:center;">Category</th>
+                                                <th style="text-align:center;">Title</th>
+                                                <th style="text-align:center;">Writer</th>
+                                                <th style="text-align:center;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#posts}}
+                                                <tr class="data" onclick="post.view('{{id}}')">
+                                                    <td style="text-align:center;">{{category}}</td>
+                                                    <td style="text-align:center;">{{title}}</td>
+                                                    <td style="text-align:center;">{{author}}</td>
+                                                    <td style="text-align:center;">{{modifiedDate}}</td>
+                                                </tr>
+                                            {{/posts}}
+                                            {{^posts}}
+                                                <tr>
+                                                    <td colspan="4" style="text-align:center;">등록된 게시물이 없습니다.</td>
+                                                </tr>
+                                            {{/posts}}
+                                        </tbody>
+                                    </table>
+                                    {{>import/page}}
+                                </div>
+                            </div>
+                            <ul class="actions right">
+                                <li><a href="javascript:;" id="btn-save-page" class="button primary">Write</a></li>
+                            </ul>
+                        </section>
                     </div>
                 </section>
             </div>
