@@ -1,7 +1,5 @@
 package com.hmahn.board.web.user;
 
-import com.hmahn.board.annotation.LoginUser;
-import com.hmahn.board.web.user.dto.UserSessionDto;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Controller;

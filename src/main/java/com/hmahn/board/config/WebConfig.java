@@ -3,10 +3,12 @@ package com.hmahn.board.config;
 import com.hmahn.board.config.component.LoginInterceptor;
 import com.hmahn.board.config.component.LoginResolver;
 import com.hmahn.board.config.component.WebInterceptor;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import org.springframework.data.web.config.PageableHandlerMethodArgumentResolverCustomizer;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

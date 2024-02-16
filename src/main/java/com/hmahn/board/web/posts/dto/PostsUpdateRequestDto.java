@@ -18,8 +18,8 @@ public class PostsUpdateRequestDto {
 
     @Builder
     public PostsUpdateRequestDto(String title, String content, String category){
-        this.title = title;
-        this.content = content;
-        this.category = category;
+        this.title      = title;
+        this.content    = content;
+        this.category   = category;
     }
 }

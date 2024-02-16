@@ -1,6 +1,5 @@
 package com.hmahn.board.config;
 
-import com.hmahn.board.domain.user.Role;
 import com.hmahn.board.service.user.UserAuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;

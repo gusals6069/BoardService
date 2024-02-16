@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @Component
 public class WebInterceptor implements HandlerInterceptor {
-
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override

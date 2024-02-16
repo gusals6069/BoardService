@@ -63,6 +63,39 @@
                                     {{>import/page}}
                                 </div>
                             </div>
+
+                            <form name="searchForm" id="searchForm">
+                                <input type="hidden" name="pageNo" id="pageNo" value="{{curr}}" />
+
+                                <table class="search" style="border-collapse:unset;">
+                                    <colgroup>
+                                        <col width="20%"/>
+                                        <col width="80%"/>
+                                        <col width="10%"/>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                <select name="searchType" id="searchType">
+                                                    <option value="">-Choose-</option>
+                                                    {{#types}}
+                                                        <option value="{{type}}" {{#curr}} selected {{/curr}}>{{type}}</option>
+                                                    {{/types}}
+                                                </select>
+                                            </td>
+                                        <td>
+                                            {{#searchKeyword}}
+                                                <input type="text" name="searchKeyword" id="searchKeyword" value="{{searchKeyword}}"></td>
+                                            {{/searchKeyword}}
+                                            {{^searchKeyword}}
+                                                <input type="text" name="searchKeyword" id="searchKeyword" value=""></td>
+                                            {{/searchKeyword}}
+                                            <td> <a href="javascript:;" id="btn-search" class="button">Search</a></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </form>
+
                             <ul class="actions right">
                                 <li><a href="javascript:;" id="btn-save-page" class="button primary">Write</a></li>
                             </ul>
@@ -70,6 +103,11 @@
                     </div>
                 </section>
             </div>
+            <script type="text/javascript">
+                window.addEventListener('DOMContentLoaded', function(){
+                    location.hash = "#board";
+                });
+            </script>
             {{>import/mail}}
             {{>import/footer}}
         </div>

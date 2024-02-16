@@ -1,5 +1,8 @@
 package com.hmahn.board.domain.posts;
 
+import com.hmahn.board.domain.user.Role;
+import com.hmahn.board.domain.user.User;
+import com.hmahn.board.domain.user.UserRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +23,8 @@ public class PostsRepositoryTest {
 
     @Autowired
     PostsRepository postsRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @After
     public void cleanup(){
@@ -28,6 +33,14 @@ public class PostsRepositoryTest {
 
     @Test
     public void post_load() throws Exception {
+
+        User user = userRepository.save(User.builder()
+                .username("테스트")
+                .email("test@email.com")
+                .picture("")
+                .role(Role.USER)
+                .build());
+
         //given
         String title = "테스트_제목";
         String content = "테스트_본문";
@@ -35,7 +48,7 @@ public class PostsRepositoryTest {
         postsRepository.save(Posts.builder()
                 .title(title)
                 .content(content)
-                .author("system")
+                .user(user)
                 .build());
 
         //when
@@ -45,6 +58,7 @@ public class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
+        assertThat(posts.getUser().getId()).isEqualTo(user.getId());
     }
 
     @Test
@@ -52,10 +66,17 @@ public class PostsRepositoryTest {
         //given
         LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
 
+        User user = userRepository.save(User.builder()
+                .username("테스트")
+                .email("test@email.com")
+                .picture("")
+                .role(Role.USER)
+                .build());
+
         postsRepository.save(Posts.builder()
                 .title("title")
                 .content("content")
-                .author("author")
+                .user(user)
                 .build());
 
         //when

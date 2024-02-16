@@ -1,17 +1,14 @@
 package com.hmahn.board.domain.user;
 
 import com.hmahn.board.domain.BaseTimeEntity;
+
+import com.hmahn.board.domain.posts.Posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -35,17 +32,20 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private Role role;
 
+    /*@OneToMany(mappedBy = "user")
+    private List<Posts> posts;*/
+
     @Builder
     public User(String username, String email, String picture, Role role) {
-        this.username = username;
-        this.email = email;
-        this.picture = picture;
-        this.role = role;
+        this.username   = username;
+        this.email      = email;
+        this.picture    = picture;
+        this.role       = role;
     }
 
     public User update(String username, String picture) {
-        this.username = username;
-        this.picture = picture;
+        this.username   = username;
+        this.picture    = picture;
 
         return this;
     }

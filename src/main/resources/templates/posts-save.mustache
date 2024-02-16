@@ -29,14 +29,18 @@
                             </div>
                             <div class="col-6 col-12-medium">
                                 <form id="postForm" method="post" class="needs-validation" novalidate>
+                                    <input type="hidden" name="pageNo"          id="pageNo"         value="{{pageNo}}"          />
+                                    <input type="hidden" name="searchType"      id="searchType"     value="{{searchType}}"      />
+                                    <input type="hidden" name="searchKeyword"   id="searchKeyword"  value="{{searchKeyword}}"   />
+
                                     <div class="fields">
                                         <div class="field">
                                             <label for="category" class="form-label">Category</label>
                                             <select id="category" name="category" class="invalid-check">
                                                 <option value="">-Choose-</option>
-                                                <option value="유머">유머</option>
-                                                <option value="잡담">잡담</option>
-                                                <option value="소식">소식</option>
+                                                {{#category}}
+                                                    <option value="{{cate}}">{{cate}}</option>
+                                                {{/category}}
                                             </select>
                                             <div class="invalid-feedback">
                                                 <span class="icon" style="top:0.225em;">

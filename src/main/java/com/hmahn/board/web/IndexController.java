@@ -1,13 +1,12 @@
 package com.hmahn.board.web;
 
 import com.hmahn.board.annotation.LoginUser;
-import com.hmahn.board.service.posts.PostsService;
 import com.hmahn.board.web.user.dto.UserSessionDto;
 
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RequiredArgsConstructor

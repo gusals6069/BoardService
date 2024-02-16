@@ -29,7 +29,10 @@
                             </div>
                             <div class="col-6 col-12-medium">
                                 <form id="postForm" method="post" class="needs-validation" novalidate>
-                                    <input type="hidden" id="id" name="id" value="{{post.id}}" />
+                                    <input type="hidden" name="id"              id="id"             value="{{post.id}}"         />
+                                    <input type="hidden" name="pageNo"          id="pageNo"         value="{{pageNo}}"          />
+                                    <input type="hidden" name="searchType"      id="searchType"     value="{{searchType}}"      />
+                                    <input type="hidden" name="searchKeyword"   id="searchKeyword"  value="{{searchKeyword}}"   />
 
                                     <div class="fields">
                                         <div class="field">

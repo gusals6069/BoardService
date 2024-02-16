@@ -1,6 +1,8 @@
 package com.hmahn.board.domain.posts;
 
 import com.hmahn.board.domain.BaseTimeEntity;
+import com.hmahn.board.domain.user.User;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,14 +39,19 @@ public class Posts extends BaseTimeEntity {
 
     private String author;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(referencedColumnName = "id", name = "user_id", nullable = false)
+    private User user;
+
     //Builder 어노테이션이 선언될 경우, 해당 클래스의 빌더패턴 클래스를 생성
     //Builder 어노테이션이 생성자에 선언될 경우, 생성자에 포함된 필드만 빌더에 포함 (ex: Posts.builder().title(title).build())
     @Builder
-    public Posts(String title, String content, String category, String author){
-        this.title = title;
-        this.content = content;
-        this.category = category;
-        this.author = author;
+    public Posts(String title, String content, String category, String author, User user){
+        this.title      = title;
+        this.content    = content;
+        this.category   = category;
+        this.author     = author;
+        this.user       = user;
     }
 
     public void update(String title, String content, String category){
