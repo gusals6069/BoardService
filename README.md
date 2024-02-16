@@ -36,3 +36,12 @@
 - add modal animation
 - add EmailJS function (email form)
 - add WebInterceptor process
+
+### 2024/02/08 변경사항
+
+- add board
+- add board pagging
+- add board search (need inputbox)
+- change SQL logging setting
+- add exception page
+- add string util script file
