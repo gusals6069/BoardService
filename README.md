@@ -45,3 +45,5 @@
 - change SQL logging setting
 - add exception page
 - add string util script file
+
+### 개발은 시간 생길 때 틈틈히 진행중입니다. 댓글기능 추가예정
